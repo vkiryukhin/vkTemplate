@@ -1,0 +1,38 @@
+<!--script type="text/html" id="test"-->
+<div id=test" style="border:1px solid red;margin:1em;">
+this is a test
+	<ul>
+		<%for(var ix=0;ix<test.length;ix++) {%>
+			<li>Current time is: <%=test[ix].h%>:<%=test[ix].m%>:<%=test[ix].s%></li>
+		<%}%>
+	</ul>
+	
+	<br/>
+	
+	<%if(bar) {%>
+		<div id="<%= txt %>" class='<%= test2 %>' onclick="aaa('aaa')" >mytest <%= txt %></div>
+		<!--script type="text/javascript">tmplRemote('test2.tmpl','test2.php','foo3');</script-->
+	<%}%>
+	
+	<% if (test2 == 'xyz') {%>
+		<script type="text/javascript">tmplRemote('test2.tmpl','test2.php','foo3');</script>
+	<% } %>
+	
+	
+	<div id="foo3">foo3</div>
+<!--	
+	<%if (txt) {%>
+		<%= txt %> <%= txt %>
+	<%}%>
+-->	
+	<div class="bar">click me</div>
+
+<script>
+//tmplRemote('test2.tmpl','test2.php','foo3');
+//function aaa (arg){alert(arg);} 
+//aaa();
+//alert("test");
+</script>
+
+	</div>
+<!--/script-->

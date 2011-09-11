@@ -1,0 +1,84 @@
+<html><head>
+<title>MicroTemplating</title>
+<script src="jquery.1.5.0.js" type="text/javascript"></script>
+<script src="tmpl_engine.js" type="text/javascript"></script>
+<script>function cbFoo(obj){alert("foo done");}</script>
+</head>
+<body>
+
+<table width="50%"><tr><td style="padding:1em;">
+<div style="font-size:80%;">
+Template #1 is a nested template: it has an embedded script which calls template #2. 
+Click upload both templates: #1 and #2 
+</div>
+<!--div  style="cursor:pointer;text-decoration:underline;color:#000080;" onclick="$('#foo').vkTemplateRun()"-->
+<div style="cursor:pointer;text-decoration:underline;color:#000080;" onclick="$('#foo').vkTemplate('test3.tmpl','test.php', cbFoo)">
+Load template #1  h:m:s
+</div> 
+</td><td>
+<div style="font-size:80%;">
+Template #2 is embedded template. Click does nothing if template #1 is not loaded. 
+But if it's loaded, click updates content of template #2
+</div>
+<div style="cursor:pointer;text-decoration:underline;color:#000080;" onclick="tmplRemote('test2.tmpl','test2.php','foo3')">
+Load template #2 s:m:h
+</div>
+</td></tr></table>
+<br/>
+
+<div id="foo">Placeholder for template #1</div>
+
+<div id="foo2"></div>
+
+<!--div id="loadbar" onclick="tmplRemote('test.tmpl','test.php',this)">load template #1</div-->
+
+
+<div style="cursor:pointer;text-decoration:underline;color:#000080;" onclick="cdAjax()">Test CD AJAX</div>
+<div id="foo5"></div>
+
+
+<script type="text/javascript">
+
+
+
+$(document).ready(function()
+{
+	$('.bar').live('click', function() {
+		alert("clicked");
+	});
+	
+/*	
+	$("#foo").vkTemplate({
+				urlTmpl		: 'test3.tmpl',   // see jQuery.ajax for details
+				urlData		: 'test.php',   // see jQuery.ajax for details
+			}, function (obj) {
+				//alert("done");
+				cbFoo(obj);
+			}
+		);
+*/
+});
+
+
+//var bar = true;//for testin only
+var bar = false;//for testin only
+//var test123 = "123"
+
+//var dataRef = 'test.php';
+var dataRef = '{"test":[{"h":"1","m":"2","s":"3"}]}';
+//tmplRemote('test3.tmpl',dataRef,'foo');
+var dataRef_7 = '{"releaseNotes":[{"RN_DESCRIPTION":"Mojo \\\"engineering\\\" release notes. UI page to keep track for project releases.","AUTHOR":"!Vadim Kiryukhin","RELEASED":"07/28/2011","CONTACT_ID":"212686","RELEASE_ID":"41","BUG_ID":"null"},{"RN_DESCRIPTION":"Support for SEM reports statistics.","AUTHOR":"!Aleksandr Arkhipov","RELEASED":"07/28/2011","CONTACT_ID":"168530","RELEASE_ID":"42","BUG_ID":"231784"},{"RN_DESCRIPTION":"RTB: Support for AppNexus targeting","AUTHOR":"!Henri Altarac","RELEASED":"07/28/2011","CONTACT_ID":"168531","RELEASE_ID":"43","BUG_ID":"245967"},{"RN_DESCRIPTION":"Enable RTB optimization and Stop at end date for agency 1275 (New RTB client)","AUTHOR":"!Henri Altarac","RELEASED":"07/29/2011","CONTACT_ID":"168531","RELEASE_ID":"61","BUG_ID":"247347"},{"RN_DESCRIPTION":"Split SEM creative page","AUTHOR":"!Vadim Kiryukhin","RELEASED":"08/03/2011","CONTACT_ID":"212686","RELEASE_ID":"81","BUG_ID":"246704"},{"RN_DESCRIPTION":"Released script to wipe out unused campaign rules","AUTHOR":"!Henri Altarac","RELEASED":"08/30/2011","CONTACT_ID":"168531","RELEASE_ID":"101","BUG_ID":"250207"},{"RN_DESCRIPTION":"Prevent API from wiping out placement org codes when XML element is missing","AUTHOR":"!Henri Altarac","RELEASED":"08/30/2011","CONTACT_ID":"168531","RELEASE_ID":"102","BUG_ID":"247586"},{"RN_DESCRIPTION":"API: improve error checking for placement rule insertion","AUTHOR":"!Henri Altarac","RELEASED":"08/30/2011","CONTACT_ID":"168531","RELEASE_ID":"103","BUG_ID":"250079"}]}';
+function cdAjax()
+{
+//alert(tmpl_7);
+	$('#foo5').tmpl(tmpl_7,jQuery.parseJSON(dataRef_7));	
+//var x = document.getElementById('templ_3').innerHTML;
+//var y = $('#templ_3').text();
+//var z = $('#templ_3_inner').html();
+	//console.log(document.getElementById('templ_3'));
+}
+
+</script>
+
+</body>
+</html>

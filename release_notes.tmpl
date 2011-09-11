@@ -1,0 +1,25 @@
+<table class=list id="sortTable">
+	<tr class="header" id="sortHeader">
+		<td id="id" 		width="5%">ID</td>
+		<td id="author"		width="15%">Author</td>
+		<td id="bug#"       width="5%">Bug#</td>
+		<td id="description" width="55%">Description</td>
+		<td id="date"        width="">Date</td>
+		<td width="">Action</td>
+	</tr>
+	<%for(var ix=0; ix<releaseNotes.length;ix++){%>
+		<tr class="header" id="sortHeader">
+			<td><%=releaseNotes[ix].RELEASE_ID%></td>
+			<td><%=releaseNotes[ix].AUTHOR%></td>
+			<td>
+				<a href="https://bugzilla.vclk.net/show_bug.cgi?id=<%=releaseNotes[ix].BUG_ID%>" target="_blank"><%=releaseNotes[ix].BUG_ID%></a>
+			</td>
+			<td><%=releaseNotes[ix].RN_DESCRIPTION%></td>
+			<td><%=releaseNotes[ix].RELEASED%></td>
+			<td>
+				<a onclick="top.markVisited(this); top.select_toptab('details','release','ui_release_notes.upsert?release_id_in=<%=releaseNotes[ix].RELEASE_ID%>',true); return false" href="ui.home#details,release,ui_release_notes.upsert?release_id_in=<%=releaseNotes[ix].RELEASE_ID%>">Update</a>
+			</td>
+			
+		</tr>
+	<%}%>
+</table>
