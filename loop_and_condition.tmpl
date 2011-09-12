@@ -1,0 +1,23 @@
+<style type="text/css">
+.loop_and_condition {border:1px solid green;margin:1em; padding:1em;}
+.loop_and_condition li {color:blue;}
+</style>
+
+<div  class="loop_and_condition" >
+Loop and Conditions:
+
+	<ul>
+		<%for(var ix=0;ix<time.length;ix++) {%>
+			<li>Current time is: <%=time[ix].h%>:<%=time[ix].m%>:<%=time[ix].s%></li>
+		<%}%>
+	</ul>
+
+	<ul><li>
+		<%if (time[0].s%2) {%> 
+			odd second 
+		<%} else {%> 
+			even second
+		<%}%>
+	</li></ul>
+	
+</div>

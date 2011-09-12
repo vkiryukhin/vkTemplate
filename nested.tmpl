@@ -1,0 +1,17 @@
+<style type="text/css">
+.loop_and_condition {border:1px solid green;margin:1em; padding:0.5em;}
+.loop_and_condition li {color:blue;}
+</style>
+
+<div  class="loop_and_condition" >
+Nested:
+
+	<ul>
+		<%for(var ix=0;ix<time.length;ix++) {%>
+			<li>Current time is: <%=time[ix].h%>:<%=time[ix].m%>:<%=time[ix].s%></li>
+		<%}%>
+	</ul>
+
+	<div id="subcontainer"></div>
+	<script type="text/javascript">$('#subcontainer').vkTemplate('basic.tmpl','basic.php');</script>
+</div>
