@@ -48,9 +48,11 @@ function loadTemplate(name)
 		break;
 		case 'nested_conditionally':
 			$('#leftpanel').vkTemplate('tmpl/nested_conditionally.tmpl','php/loop_and_condition.php');
+			$('#rightpanel').load('html/nested_conditionally.html');
 		break;
 		case 'csi':
 			$('#leftpanel').vkTemplate('tmpl/csi.tmpl','php/basic.php');
+			$('#rightpanel').load('html/csi.html');
 		break;
 	}
 }

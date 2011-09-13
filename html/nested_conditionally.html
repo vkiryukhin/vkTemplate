@@ -1,6 +1,6 @@
 <table>
 <tr><td>
-
+<p>Template<code>tmpl/basic.tmpl</code> is loaded only if seconds is odd number.</p>
 </td></tr>
 <tr ><td class="functionDoc">
 <div class="h5">JSON:</div><pre><code>
@@ -18,8 +18,11 @@
 &lt;%}%&gt;
 
 &lt;%if (time[0].s%2) {%&gt; 
-  odd second 
-&lt;%} else {%&gt;
+  odd second
+  &lt;script type="text/javascript"&gt;
+    $('#subcontainer').vkTemplate('tmpl/basic.tmpl','php/basic.php');
+  &lt;/script&gt;
+&lt;%} else {%&gt; 
   even second
 &lt;%}%&gt;
 </code></pre>
@@ -27,6 +30,6 @@
 <tr ><td class="jsonDoc">
 <div class="h5">Function:</div>
 <code>
-$('#leftpanel').vkTemplate('tmpl/loop_and_condition.tmpl','php/loop_and_condition.php');
+$('#leftpanel').vkTemplate('tmpl/nested_conditionally.tmpl','php/loop_and_condition.php');
 </code>
 </td></tr></table>
