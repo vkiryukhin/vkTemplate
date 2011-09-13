@@ -1,0 +1,33 @@
+<table>
+<tr><td>
+<p>Parent template <code>tmpl/nested.tmpl</code> calls childe template <code>tmpl/basic.tmpl</code>.</p>
+</td></tr>
+<tr ><td class="functionDoc">
+<div class="h5">JSON:</div>
+<pre><code>
+{  "time":[
+    {"h":"04","m":"20","s":"22"},
+    {"h":"04","m":"20","s":"22"},
+    {"h":"04","m":"20","s":"22"}
+  ] }
+</code></pre>
+</td></tr><tr><td class="templateDoc">
+<div class="h5">Template:</div>
+<pre><code>
+&lt;%for(var ix=0;ix&lt;time.length;ix++) {%&gt;
+  Current time is: &lt;%=time[ix].h%&gt;:&lt;%=time[ix].m%&gt;:&lt;%=time[ix].s%&gt;
+&lt;%}%&gt;
+
+&lt;div id="subcontainer"&gt;&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+  $('#subcontainer').vkTemplate('tmpl/basic.tmpl','php/basic.php');
+&lt;/script&gt;
+</code></pre>
+</td></tr>
+<tr ><td class="jsonDoc">
+<div class="h5">Function:</div>
+<code>
+$('#leftpanel').vkTemplate('tmpl/nested.tmpl','php/loop_and_condition.php');
+</code>
+</td></tr></table>

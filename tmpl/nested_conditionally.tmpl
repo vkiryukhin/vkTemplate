@@ -1,0 +1,25 @@
+<style type="text/css">
+.loop_and_condition {border:1px solid green;margin:1em; padding:0.5em;}
+.loop_and_condition li {color:blue;}
+</style>
+
+<div  class="loop_and_condition" >
+<div class="h5">Conditionally nested:</div>
+
+	<ul>
+		<%for(var ix=0;ix<time.length;ix++) {%>
+			<li>Current time is: <%=time[ix].h%>:<%=time[ix].m%>:<%=time[ix].s%></li>
+		<%}%>
+	</ul>
+
+	<div id="subcontainer"></div>
+	<ul><li>
+		<%if (time[0].s%2) {%> 
+			odd second
+			<script type="text/javascript">$('#subcontainer').vkTemplate('tmpl/basic.tmpl','php/basic.php');</script>
+		<%} else {%> 
+			even second
+		<%}%>
+	</li></ul>
+	
+</div>
