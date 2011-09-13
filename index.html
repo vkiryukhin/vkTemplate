@@ -1,56 +1,90 @@
-<html><head>
-<style type="text/css">
-.interactive_div {cursor:pointer;text-decoration:underline;color:#000080; margin-right:1em;float:left;}
-</style>
-<title>vktemplate</title>
-<script src="jquery.1.5.0.js" type="text/javascript"></script>
-<script src="vktemplate.js" type="text/javascript"></script>
-<script>function cbFoo(obj){alert("foo done");}</script>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+<head>
+
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css" type="text/css" media="all" /> 
+			<link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/css" media="all" /> 
+			<!--script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script-->
+			<!--script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script-->
+			<script src="jquery.1.5.0.js" type="text/javascript"></script>
+			<!--script src="jquery-ui.min.js" type="text/javascript"></script--> 
+			<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js" type="text/javascript"></script> 
+
+
+<script type="text/javascript" src="vktemplate.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<link rel="stylesheet" type="text/css" href="main.css" media="screen" />
+<title>vkTemplate - jQuery template plugin</title>
 </head>
 <body>
 
-<div class="interactive_div" onclick="$('#container').vkTemplate('basic.tmpl','basic.php')">
-Basic
-</div>
 
-<div class="interactive_div" onclick="$('#container').vkTemplate('basic.tmpl','basic.php', function(){$('#container div').css('background-color','yellow')})">
-Callback
-</div>
+<!-- ================= header ======================= -->
+<div id="header">
+	<h1>vkTemplate </h1>
+	<ul>
+		&nbsp;|&nbsp;<li data-content="content/overview.html">Overview</li>
+		&nbsp;|&nbsp;<li data-content="content/api.html">Documentation</li>
+		&nbsp;|&nbsp;<li><a href="http://vadimkir.blogspot.com/" target="_blank">Blog</a></li>
+		&nbsp;|&nbsp;<li ><a href="https://code.google.com/p/smartupdater/downloads/list" title="Download from Google Code" target="_blank">Download</a></li>
+		&nbsp;|&nbsp;<li ><a href="https://github.com/vkiryukhin/Smartupdater" title="Source on GitHub" target="_blank">GitHub</a></li>&nbsp;|&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<li><i><a href="http://www.eslinstructor.net/demo/smartupdater_2/smartupdater_home.html" target="_blank" style="color:#999999;font-size:90%;">Smartupdater2 ( deprecated )</a></i></li>&nbsp;|&nbsp;
+	</ul>
+</div> <!-- /header -->
+<!-- ================= container ======================= -->
 
-<div class="interactive_div" onclick="$('#container').vkTemplate('loop_and_condition.tmpl','loop_and_condition.php')">
-Loop and Conditions
-</div> 
+<div id="container" >
 
-<div class="interactive_div" onclick="$('#container').vkTemplate('nested.tmpl','loop_and_condition.php')">
-Nested
-</div>
+<!-- ================= left panel ======================= -->
+<div id="menu" >
+	<ul>
+		<!--li>Smart Client
+			<ul-->
+				<li onclick="loadTemplate('basic')">Basic</li>
+				<li onclick="loadTemplate('callback')">Callback</li>
+				<li onclick="loadTemplate('loop_and_condition')">Loop and Conditions</li>
+				<li onclick="loadTemplate('nested')">Nested Templates</li>
+				<li onclick="loadTemplate('nested_conditionally')">Conditionally Nested</li>
+				<li onclick="loadTemplate('csi')">Client Side Include</li>
+				<!--li data-content="content/dynamic_url.html">Dynamic URL</li-->
+				<!--li data-content="content/complex_alternation.html">Complex Alternation</li-->
+			<!--/ul>
+		</li-->
+		<!--li>Smart Server
+			<ul>
+				<li data-content="content/http_cache.html">HTTP cache</li>
+				<li data-content="content/remote_timeout.html">Remote Timeout</li>
+				<li data-content="content/remote_callback.html">Remote Callback</li>
+				<li data-content="content/automatic_control.html">Automatic Control</li>
+			</ul>
+		</li-->
+	</ul>
+</div> <!-- /menu -->
 
-<div class="interactive_div" onclick="$('#container').vkTemplate('nested_conditionally.tmpl','loop_and_condition.php')">
-Conditionally Nested
-</div>
+<!-- ================= right panel ======================= -->
 
-<div class="interactive_div" onclick="$('#container').vkTemplate('csi.tmpl','basic.php')">
-Client Side Include
-</div>
+	<div id="content"> 
+	
+		<div id="leftpanel">demo template</div>
+		
+		<div id="rightpanel">description </div>
+	
+	</div>
 
+	<br clear="both"/>
 
-<br clear="all"/>
+</div> <!-- /container -->	
 
-<div id="container"></div>
+<!-- ================= footer ======================= -->
+<div style="clear:both;"></div>
 
+	<br/><hr/>
+	
+<div id="footer">&copy; 2010 - 2011 Vadim Kiryukhin </div> 
 
-
-<script type="text/javascript">
-$(document).ready(function()
-{
-	$('.bar').live('click', function() {
-		alert("clicked");
-	});
-
-});
-
-
-</script>
 
 </body>
 </html>

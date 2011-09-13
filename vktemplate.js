@@ -35,18 +35,22 @@
 	jQuery.fn.vkTemplate = function (urlTmpl, urlData, callback ) {
 	
 		function _tmpl(str, data){ //modified Micro-Templating engine
-			var fn = new Function("obj",
-			"var p=[],print=function(){p.push.apply(p,arguments);};" +
-			"with(obj){p.push('" +
-			str.replace(/[\r\t\n]/g, " ")
-				.replace(/'(?=[^%]*%>)/g,"\t")
-				.split("'").join("\\'")
-				.split("\t").join("'")
-				.replace(/<%=(.+?)%>/g, "',$1,'")
-				.split("<%").join("');")
-				.split("%>").join("p.push('")
-				+ "');}return p.join('');");
-			return fn( data );
+			try {
+				var fn = new Function("obj",
+				"var p=[],print=function(){p.push.apply(p,arguments);};" +
+				"with(obj){p.push('" +
+				str.replace(/[\r\t\n]/g, " ")
+					.replace(/'(?=[^%]*%>)/g,"\t")
+					.split("'").join("\\'")
+					.split("\t").join("'")
+					.replace(/<%=(.+?)%>/g, "',$1,'")
+					.split("<%").join("');")
+					.split("%>").join("p.push('")
+					+ "');}return p.join('');");
+				return fn( data );
+			} catch (e) {
+				return "< # ERROR: " + e.message + " # >";
+			}
 		};
 	
 		function _getData(urlData, elm, callback) { // get data with ajax
