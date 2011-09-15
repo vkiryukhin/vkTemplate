@@ -12,8 +12,9 @@
 *
 * _tmpl function is "Micro-Templating" engine, 
 * originally written by John Resig ( http://ejohn.org/ - MIT Licensed )
-* and modified by Vadim Kiryukhin based on Neil's comment at 
+* and modified by Vadim Kiryukhin. To fix issue with single quotes, Neil's comment at 
 * http://www.west-wind.com/weblog/posts/2008/Oct/13/Client-Templating-with-jQuery
+* is used.
 * 
 * PARAMETERS:
 *
