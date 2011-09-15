@@ -1,6 +1,8 @@
 <table>
 <tr><td>
-<p>Similar to  <b>Server Side Include</b> technology.</p>
+<div class="h6">Client Side Include</div>
+<p>Client Side Include <b>( CSI )</b> is similar to  "Server Side Include" <b>( SSI )</b> technology. Simply include actual templates into template-container. Load this template-container either as a standalone html page or with jQuery ajax's .load() function. You don't need to use vkTemplate() plugin to load template-container itself. 
+</p>
 </td></tr>
 <tr ><td class="functionDoc">
 <div class="h5">JSON:</div><pre><code>
@@ -9,21 +11,15 @@ no JSON
 </td></tr><tr><td class="templateDoc">
 <div class="h5">Template:</div>
 <pre><code>
-&lt;div id="tmpl_1"&gt;
+&lt;div id="foo"&gt;
   &lt;script type="text/javascript">
-      $('#tmpl_1').vkTemplate('tmpl/basic.tmpl','php/basic.php');
+      <span class="highlight">$('#foo').vkTemplate('basic.tmpl','basic.php');</span>
   &lt;/script&gt;
 &lt;/div&gt;
 
-&lt;div id="tmpl_2"&gt;
+&lt;div id="bar"&gt;
   &lt;script type="text/javascript">
-      $('#tmpl_2').vkTemplate('tmpl/loop_and_condition.tmpl','php/loop_and_condition.php');
-  &lt;/script&gt;
-&lt;/div&gt;
-
-&lt;div id="tmpl_3"&gt;
-  &lt;script type="text/javascript">
-      $('#tmpl_3').vkTemplate('tmpl/nested_conditionally.tmpl','php/loop_and_condition.php');
+      <span class="highlight">$('#bar').vkTemplate('nested.tmpl','loop.php');</span>
   &lt;/script&gt;
 &lt;/div&gt;
 </code></pre>
@@ -31,6 +27,6 @@ no JSON
 <tr ><td class="jsonDoc">
 <div class="h5">Function:</div>
 <code>
-$('#leftpanel').vkTemplate('tmpl/csi.tmpl','php/basic.php');
+$('#leftpanel').load('csi.tmpl');
 </code>
 </td></tr></table>

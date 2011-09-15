@@ -1,0 +1,29 @@
+<table>
+<tr><td>
+<div class="h6"></div>
+</td></tr></tr>
+<td class="functionDoc">
+<div class="h5">jsonData.php</div><pre><code>
+{ 
+  "first_name":"John", 
+  "last_name":"Smith", 
+  "state":"California"
+}
+</code></pre>
+</td></tr><tr><td class="templateDoc">
+<div class="h5">templateUrl.tmpl</div>
+<pre><code>
+My name is &lt;%=first_name%> &lt;%=last_name%&gt;.
+Greeting from &lt;%=state%&gt;!
+</code></pre>
+</td></tr>
+<tr ><td class="jsonDoc">
+<div class="h5">Function:</div>
+<pre><code>
+$('#leftpanel')
+.vkTemplate('templateUrl.tmpl','jsonData.php');
+</code></pre>
+</td></tr></table>
+
+
+

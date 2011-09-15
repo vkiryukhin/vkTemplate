@@ -1,0 +1,21 @@
+<style type="text/css">
+.condition {border:1px solid green;margin:1em; padding:1em;}
+.condition li {color:blue;}
+</style>
+
+<div  class="condition" >
+<div class="h5">Conditions:</div>
+
+<ul>
+	<li>Current time is: <%=h%>:<%=m%>:<%=s%></li>
+</ul>
+
+	<ul style="list-style-type:none;"><li>
+		<%if (s%2) {%> 
+			odd second 
+		<%} else {%> 
+			even second
+		<%}%>
+	</li></ul>
+	
+</div>

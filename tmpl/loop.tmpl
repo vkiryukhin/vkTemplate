@@ -1,10 +1,10 @@
 <style type="text/css">
-.loop {border:1px solid green;margin:1em; padding:0.5em;}
+.loop {border:1px solid green;margin:1em; padding:1em;}
 .loop li {color:blue;}
 </style>
 
 <div  class="loop" >
-<div class="h5">Nested:</div>
+<div class="h5">Loop:</div>
 
 	<ul>
 		<%for(var ix=0;ix<time.length;ix++) {%>
@@ -12,6 +12,4 @@
 		<%}%>
 	</ul>
 
-	<div id="subcontainer"></div>
-	<script type="text/javascript">$('#subcontainer').vkTemplate('tmpl/basic.tmpl','php/basic.php');</script>
 </div>

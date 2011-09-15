@@ -1,6 +1,6 @@
 <table>
 <tr><td>
-
+<div class="h6">Loop</div>
 </td></tr>
 <tr ><td class="functionDoc">
 <div class="h5">JSON:</div><pre><code>
@@ -16,17 +16,11 @@
 &lt;%for(var ix=0;ix&lt;time.length;ix++) {%&gt;
   Current time is: &lt;%=time[ix].h%&gt;:&lt;%=time[ix].m%&gt;:&lt;%=time[ix].s%&gt;
 &lt;%}%&gt;
-
-&lt;%if (time[0].s%2) {%&gt; 
-  odd second 
-&lt;%} else {%&gt;
-  even second
-&lt;%}%&gt;
 </code></pre>
 </td></tr>
 <tr ><td class="jsonDoc">
 <div class="h5">Function:</div>
 <code>
-$('#leftpanel').vkTemplate('tmpl/loop_and_condition.tmpl','php/loop_and_condition.php');
+$('#leftpanel').vkTemplate('loop.tmpl','loop.php');
 </code>
 </td></tr></table>

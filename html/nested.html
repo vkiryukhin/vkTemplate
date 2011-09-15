@@ -1,6 +1,7 @@
 <table>
 <tr><td>
-<p>Parent template <code>tmpl/nested.tmpl</code> calls childe template <code>tmpl/basic.tmpl</code>.</p>
+<div class="h6">Nested Templates</div>
+<p>Parent template <code>nested.tmpl</code> calls childe template <code>basic.tmpl</code>.</p>
 </td></tr>
 <tr ><td class="functionDoc">
 <div class="h5">JSON:</div>
@@ -19,15 +20,15 @@
 &lt;%}%&gt;
 
 &lt;div id="subcontainer"&gt;&lt;/div&gt;
-
+<span class="highlight">
 &lt;script type="text/javascript"&gt;
-  $('#subcontainer').vkTemplate('tmpl/basic.tmpl','php/basic.php');
-&lt;/script&gt;
+  $('#subcontainer').vkTemplate('basic.tmpl','basic.php');
+&lt;/script&gt;</span>
 </code></pre>
 </td></tr>
 <tr ><td class="jsonDoc">
 <div class="h5">Function:</div>
 <code>
-$('#leftpanel').vkTemplate('tmpl/nested.tmpl','php/loop_and_condition.php');
+$('#leftpanel').vkTemplate('nested.tmpl','loop.php');
 </code>
 </td></tr></table>

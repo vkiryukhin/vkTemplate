@@ -1,0 +1,33 @@
+<table>
+<tr><td>
+<div class="h6">Integration</div>
+<p>
+This is an example of a very simple web application, which performs periodical updating functionality. Every 2 seconds it takes time from a server and display it. I use jQuery <a href="http://eslinstructor.net/smartupdater3/" target="_blank">Smartupdater</a> plugin to implement polling mechanism. 
+</p>
+</td></tr>
+<tr ><td class="functionDoc">
+<div class="h5">JSON:</div><pre><code>
+{"h":"06","m":"10","s":"05"}
+</code></pre>
+</td></tr><tr><td class="templateDoc">
+<div class="h5">Template:</div>
+<pre><code>
+&lt;%=h%&gt;:&lt;%=m%&gt;:&lt;%=s%&gt;
+</code></pre>
+</td></tr>
+<tr ><td class="jsonDoc">
+<div class="h5">Function:</div>
+<pre><code>
+&lt;div id="timedisplay"&gt;&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+  $("#timedisplay").<span class="highlight">smartupdater</span>({
+      url: 'php/get_time.php',<span class="comment"> // url to data </span>
+      minTimeout: 2000 <span class="comment">        // 2 seconds</span>
+    }, function (data) {
+      <span class="highlight">$('#timedisplay').vkTemplate('tmpl/time.tmpl',data);</span>
+    }
+  );
+&lt;/script&gt;
+</code></pre>
+</td></tr></table>

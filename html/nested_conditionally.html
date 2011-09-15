@@ -1,27 +1,24 @@
 <table>
 <tr><td>
-<p>Template<code>tmpl/basic.tmpl</code> is loaded only if seconds is odd number.</p>
+<div class="h6">Conditionally Nested</div>
+<p>Template <code>basic.tmpl</code> is loaded only if seconds is odd number. 
+Click on "Conditionally Nested" menu item several times to see how it works.
+</p>
 </td></tr>
 <tr ><td class="functionDoc">
 <div class="h5">JSON:</div><pre><code>
-{  "time":[
-    {"h":"04","m":"20","s":"22"},
-    {"h":"04","m":"20","s":"22"},
-    {"h":"04","m":"20","s":"22"}
-  ] }
+{"h":"06","m":"10","s":"05"}
 </code></pre>
 </td></tr><tr><td class="templateDoc">
 <div class="h5">Template:</div>
 <pre><code>
-&lt;%for(var ix=0;ix&lt;time.length;ix++) {%&gt;
-  Current time is: &lt;%=time[ix].h%&gt;:&lt;%=time[ix].m%&gt;:&lt;%=time[ix].s%&gt;
-&lt;%}%&gt;
+ Current time is: &lt;%=h%&gt;:&lt;%=m%&gt;:&lt;%=s%&gt;
 
-&lt;%if (time[0].s%2) {%&gt; 
-  odd second
+&lt;%if (s%2) {%&gt; 
+  odd second<span class="highlight">
   &lt;script type="text/javascript"&gt;
-    $('#subcontainer').vkTemplate('tmpl/basic.tmpl','php/basic.php');
-  &lt;/script&gt;
+    $('#subcontainer').vkTemplate('basic.tmpl','basic.php');
+  &lt;/script&gt;</span>
 &lt;%} else {%&gt; 
   even second
 &lt;%}%&gt;
@@ -30,6 +27,6 @@
 <tr ><td class="jsonDoc">
 <div class="h5">Function:</div>
 <code>
-$('#leftpanel').vkTemplate('tmpl/nested_conditionally.tmpl','php/loop_and_condition.php');
+$('#leftpanel').vkTemplate('nested_conditionally.tmpl','condition.php');
 </code>
 </td></tr></table>

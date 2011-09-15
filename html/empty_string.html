@@ -1,11 +1,12 @@
 <table>
 <tr><td>
-<div class="h6">Basic</div>
-</td></tr></tr>
-<td class="functionDoc">
+<div class="h6">Empty String</div>
+<p>Parameter "state" in JSON is empty, but it doesn't crash application.</p>
+</td></tr>
+<tr ><td class="functionDoc">
 <div class="h5">JSON:</div>
 <code>
-{ "first_name":"Vadim", "last_name":"Kiryukhin", "state":"California"}
+{ "first_name":"Vadim", "last_name":"Kiryukhin", <span class="highlight">"state":""</span>}
 </code>
 </td></tr><tr><td class="templateDoc">
 <div class="h5">Template:</div>
@@ -17,6 +18,6 @@
 <tr ><td class="jsonDoc">
 <div class="h5">Function:</div>
 <code>
-$('#leftpanel').vkTemplate('basic.tmpl','basic.php');
+$('#leftpanel').vkTemplate('basic.tmpl','empty_string.php');
 </code>
 </td></tr></table>

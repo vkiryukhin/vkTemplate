@@ -1,0 +1,19 @@
+<style type="text/css">
+.condition {border:1px solid green;margin:1em; padding:1em;}
+#timedisplay  {color:blue;}
+</style>
+
+<div  class="condition" >
+	<div class="h5">Time on server</div>
+	<div id="timedisplay" style="display:inline-block"></div>
+</div>
+
+<script type="text/javascript">
+		$("#timedisplay").smartupdater({
+			url: 'php/get_time.php',
+			minTimeout: 2000 // 2 seconds
+			}, function (data) {
+				$('#timedisplay').vkTemplate('tmpl/time.tmpl',data);
+			}
+		);
+</script>

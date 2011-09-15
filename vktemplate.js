@@ -18,11 +18,13 @@
 * PARAMETERS:
 *
 *	@urlTemplate  	- template URL;
-* 	@urlData		- data URL 
+* 	@jsonData		- either json string or URL to data 
 * 	@function		- callback function (optional)
 *
 * USAGE:
-*
+*	
+*	$('#container').vkTemplate('myTemplate.tmpl','myData.php');
+*	$('#container').vkTemplate('myTemplate.tmpl','{"foo":"bar"}');
 *	$('#container').vkTemplate('myTemplate.tmpl','myData.php', function({...}));
 *   $('#container').vkTemplate('myTemplate.tmpl','myData.php', myCallback);
 *		
@@ -32,10 +34,9 @@
 
 	var vkTemplatesCache = {};
 	
-	jQuery.fn.vkTemplate = function (urlTmpl, urlData, callback ) {
+	jQuery.fn.vkTemplate = function (urlTmpl, jsonData, callback ) {
 	
 		function _tmpl(str, data){ //modified Micro-Templating engine
-			try {
 				var fn = new Function("obj",
 				"var p=[],print=function(){p.push.apply(p,arguments);};" +
 				"with(obj){p.push('" +
@@ -48,31 +49,37 @@
 					.split("%>").join("p.push('")
 					+ "');}return p.join('');");
 				return fn( data );
-			} catch (e) {
-				return "< # ERROR: " + e.message + " # >";
-			}
 		};
 	
-		function _getData(urlData, elm, callback) { // get data with ajax
+		function _getData(jsonData, elm, callback) { // jsonData: either JSON-string or URL
 		
-			$.ajax( {
-				url		: urlData,
-				dataType: "text",
-				cache	: false, 
-				success	: function(data) {
-					$(elm).empty().append(_tmpl(vkTemplatesCache[urlTmpl],jQuery.parseJSON(data)));	
-					if(typeof(callback) === 'function') {
-						callback(elm);
+			if($.trim(jsonData).charAt(0) == '{') { //JSON-string
+				$(elm).empty().append(_tmpl(vkTemplatesCache[urlTmpl],jQuery.parseJSON(jsonData)));	
+						if(typeof(callback) === 'function') {
+							callback(elm);
+						}
+						
+			} else { // URL
+		
+				$.ajax( {
+					url		: jsonData,
+					dataType: "text",
+					//cache	: false, 
+					success	: function(data) {
+						$(elm).empty().append(_tmpl(vkTemplatesCache[urlTmpl],jQuery.parseJSON(data)));	
+						if(typeof(callback) === 'function') {
+							callback(elm);
+						}
 					}
-				}
-			});
+				});
+			}
 		}
 	
 		return this.each(function () {
 			var elm = this;
 
 			if(vkTemplatesCache[urlTmpl]) { //template has been cashed;
-				_getData(urlData, elm, callback);
+				_getData(jsonData, elm, callback);
 				
 			} else { //get template with ajax
 
@@ -81,7 +88,7 @@
 					dataType: "text",
 					success: function(data) { 
 						vkTemplatesCache[urlTmpl] = data; // save template in cache
-						_getData(urlData, elm, callback);
+						_getData(jsonData, elm, callback);
 					}
 				});
 			}

@@ -1,6 +1,8 @@
 <table>
 <tr><td>
-<p>After template is rendered callback function (which is optional ) is called.</p>
+<div class="h6">Callback</div>
+<p>After template is rendered, optional callback function can be called. 
+With this function you can resize existing and/or loaded elements, adjust layout, hide loading image, etc.  </p>
 </td></tr>
 <tr ><td class="functionDoc">
 <div class="h5">JSON:</div>
@@ -17,6 +19,6 @@
 <tr ><td class="jsonDoc">
 <div class="h5">Function:</div>
 <code>
-$('#leftpanel').vkTemplate('tmpl/basic.tmpl','php/basic.php', function(){$('#leftpanel div').css('background-color','yellow')});
+$('#leftpanel').vkTemplate('basic.tmpl','basic.php',<span class="highlight"> function(){$('#leftpanel div').css('background-color','yellow')}</span>);
 </code>
 </td></tr></table>

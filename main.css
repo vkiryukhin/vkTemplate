@@ -7,7 +7,7 @@ background:#FFFFF0;}
 
 h1, h2, h3 {text-align:center; color:#000080;}
 p {margin:10px; padding:5px;}
-code {color:#000080; /*font-weight:bold;*/font-size:110%;fint-style:italic;}
+code {color:#000040; font-weight:bold; font-size:110%; /*fint-style:italic;*/}
 pre {/*font-size:120%;*/ /*font-family: monospace;color:#000033; font-weight:bold;*/}
 a:link {color:black;}
 a:visited {color:black;}
@@ -21,11 +21,11 @@ a:visited {color:black;}
 
 #container { min-width:800px; border:0px solid green;}
 
-#menu { 	width:15%;	float:left; margin:3px;	border:0px solid blue; background:#E8E8FF; padding:0.25%}
-#menu ul li ul li { cursor:pointer;}
-#menu ul li ul li:hover {color:#ff0000;}
+#menu { 	width:20%;	float:left; margin:3px;	border:0px solid blue; background:#E8E8FF; padding:0.25%}
+#menu ul li { cursor:pointer; margin-bottom:0.5em;}
+#menu ul li:hover {color:#ff0000;}
 
-#content { width:82%; float:left; min-height:20px; border:0px solid black; }
+#content { width:77%; float:left; min-height:20px; border:0px solid black; }
 
 #footer { height:50px; text-align:center;color:#999999;font-size:70%;}
 
@@ -109,3 +109,6 @@ a:visited {color:black;}
 .templateDoc {background-color:#FFE0FF; padding:0.5em;}
 .jsonDoc {background-color:#FFFFcc; padding:0.5em; }
 .h5 {margin-bottom:1em; font-weight:bold;}
+.h6 {margin-bottom:1em; font-weight:bold;text-align:center;margin-bottom:0.5em;}
+.highlight {background-color:#FFFF00;}
+.comment {color:green;}

@@ -1,0 +1,27 @@
+<table>
+<tr><td>
+<div class="h6">Condition</div>
+Click on "Conditions" menu item several times to see how it works.
+</td></tr>
+<tr ><td class="functionDoc">
+<div class="h5">JSON:</div><pre><code>
+{"h":"04","m":"20","s":"22"}
+</code></pre>
+</td></tr><tr><td class="templateDoc">
+<div class="h5">Template:</div>
+<pre><code>
+Current time is: <%=h%>:<%=m%>:<%=s%>
+
+&lt;%if (s%2) {%&gt; 
+  odd second 
+&lt;%} else {%&gt;
+  even second
+&lt;%}%&gt;
+</code></pre>
+</td></tr>
+<tr ><td class="jsonDoc">
+<div class="h5">Function:</div>
+<code>
+$('#leftpanel').vkTemplate('condition.tmpl','condition.php');
+</code>
+</td></tr></table>

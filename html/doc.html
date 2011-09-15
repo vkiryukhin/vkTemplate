@@ -1,0 +1,53 @@
+<style type="text/css">
+#doc {margin:1em;}
+#doc ul li {margin:0.5em;}
+</style>
+<div id="doc">
+<div class="h6">Documentation</div>
+<p>
+
+<ul>
+	<li>No configuration is needed</li>
+	<li>Include in the page head: <code>&lt;script type="text/javascript" src="vktemplate.js"&gt;&lt;/script&gt;</code>
+
+	<li>Usage format: <code>$('#container').vkTemplate(urlTemplate, jsonData [, callback]);</code>
+		
+	</li>
+	<li>Parameters:
+		<ul>
+		<li><code>@urlTemplate</code> - URL address to get template;</li>
+
+		<li><code>@jsonData</code>:<br/>
+		- URL address to get data.<br/>
+		- JSON string;
+		</li>
+		<li><code>@callback</code> - callback function (optional)</li>
+		</ul>
+	</li>
+	
+	<li>Usage Examples:
+		<ul>
+			<li><code>$('#container').vkTemplate(urlTemplate, urlJsonData);</code></li>
+			<li><code>$('#container').vkTemplate(urlTemplate, '{"foo":"bar"}');</code></li>
+			<li><code>$('#container').vkTemplate(urlTemplate, urlJsonData, function(){...});</code></li>
+		</ul>
+	</li>
+	<li>Template syntax:
+		<ul>
+		<li>javascript logic is wrapped with  <b>&lt;% ... &gt;</b><br/></li>
+		<li>stuff which should be printed is wrapped with  <b>&lt;%= ... &gt;</b></li>
+		</ul>
+	</li>
+	<li>Template Examples:
+		<ul>
+		<li><code>&lt;%=first_name%> &lt;%=last_name%&gt;></code></li>
+		<li><pre><code>&lt;%for(var ix=0;ix&lt;time.length;ix++) {%&gt;
+  time is: &lt;%=time[ix].h%&gt;:&lt;%=time[ix].m%&gt;:&lt;%=time[ix].s%&gt;
+&lt;%}%&gt;</code></pre>
+		</li>
+		</ul>
+	</li>
+</ul>
+
+</p>
+</div>
