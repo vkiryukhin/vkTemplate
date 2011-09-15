@@ -64,7 +64,7 @@
 				$.ajax( {
 					url		: jsonData,
 					dataType: "text",
-					//cache	: false, 
+					cache	: false, 
 					success	: function(data) {
 						$(elm).empty().append(_tmpl(vkTemplatesCache[urlTmpl],jQuery.parseJSON(data)));	
 						if(typeof(callback) === 'function') {
