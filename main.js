@@ -28,7 +28,7 @@ function loadTemplate(name)
 			$('#rightpanel').empty().load('html/basic.html');
 		break;
 		case 'callback':
-			$('#leftpanel').vkTemplate('tmpl/basic.tmpl','php/basic.php', function(){$('#leftpanel div').css('background-color','yellow')});
+			$('#leftpanel').vkTemplate('tmpl/basic.tmpl','php/basic.php', function(elm,jsonObj){$('#leftpanel div').css('background-color','yellow')});
 			$('#rightpanel').empty().load('html/callback.html');
 		break;
 		case 'loop':
@@ -61,7 +61,15 @@ function loadTemplate(name)
 			$('#rightpanel').empty().load('html/integration.html');
 		break;
 		
-		
+		case 'test':
+			$('#leftpanel').vkTemplate('tmpl/test.tmpl','{"foooo":"bar"}', function(){$('#leftpanel div').css('background-color','yellow')});
+			
+			//$('#leftpanel').vkTemplate('tmpl/test.tmpl','php/basic.php', function(){$('#leftpanel div').css('background-color','yellow')});
+			
+			//$('#leftpanel').vkTemplate('tmpl/test.tmpl','php/basic.php',{foo:"bar",aaa:123});
+			
+			$('#rightpanel').empty().load('html/callback.html');
+		break;
 		
 	}
 }

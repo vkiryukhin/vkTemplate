@@ -15,19 +15,25 @@
 * and modified by Vadim Kiryukhin. To fix issue with single quotes, Neil's comment at 
 * http://www.west-wind.com/weblog/posts/2008/Oct/13/Client-Templating-with-jQuery
 * is used.
-* 
+*
+*	.vkTemplate(urlTemplate, jsonData, [params], [callback(elm, data)]) 
+*
 * PARAMETERS:
 *
 *	@urlTemplate  	- template URL;
 * 	@jsonData		- either json string or URL to data 
+*	@params			- a map or string that is sent to the server with the jsonData request if jsonData 
+*					  is URL. See jQuery Ajax "data" parameter for detailes. (optional)
 * 	@function		- callback function (optional)
 *
 * USAGE:
 *	
-*	$('#container').vkTemplate('myTemplate.tmpl','myData.php');
+*	$('#container').vkTemplate('myTemplate.tmpl','myData.php'); 
 *	$('#container').vkTemplate('myTemplate.tmpl','{"foo":"bar"}');
-*	$('#container').vkTemplate('myTemplate.tmpl','myData.php', function({...}));
-*   $('#container').vkTemplate('myTemplate.tmpl','myData.php', myCallback);
+*	$('#container').vkTemplate('myTemplate.tmpl','myData.php', function(elm, jsonObj){...});
+*   $('#container').vkTemplate('myTemplate.tmpl','myData.php', {foo:"bar"});
+*	$('#container').vkTemplate('myTemplate.tmpl','myData.php', {foo:"bar"}, function(elm, jsonObj){...});
+
 *		
 */
 
@@ -35,7 +41,7 @@
 
 	var vkTemplatesCache = {};
 	
-	jQuery.fn.vkTemplate = function (urlTmpl, jsonData, callback ) {
+	jQuery.fn.vkTemplate = function (urlTmpl, jsonData, params, callback ) {
 	
 		function _tmpl(str, data){ //modified Micro-Templating engine
 				var fn = new Function("obj",
@@ -52,24 +58,43 @@
 				return fn( data );
 		};
 	
-		function _getData(jsonData, elm, callback) { // jsonData: either JSON-string or URL
+		function _getData(jsonData, elm, params, callback) { // jsonData: either JSON-string or URL
 		
+			if ( params ) {// If it's a function
+				if ( jQuery.isFunction( params ) ) {// We assume that it's the callback
+					callback = params;
+					params = null;
+				} else if ( typeof params === "object" ) {// Otherwise, build a param string
+					params = jQuery.param( params );
+				}
+			}
+	
+			if( typeof(jsonData) === 'object') {//json object
+				$(elm).empty().append(_tmpl(vkTemplatesCache[urlTmpl],jsonData));	
+				if(callback) {
+					callback(elm, jsonData);
+				}
+			} else // We assume that it's a string
+			
 			if($.trim(jsonData).charAt(0) == '{') { //JSON-string
-				$(elm).empty().append(_tmpl(vkTemplatesCache[urlTmpl],jQuery.parseJSON(jsonData)));	
-						if(typeof(callback) === 'function') {
-							callback(elm);
-						}
+				var jsonObj = jQuery.parseJSON(jsonData);
+				$(elm).empty().append(_tmpl(vkTemplatesCache[urlTmpl],jsonObj));	
+				if(callback) {
+					callback(elm, jsonObj);
+				}
 						
-			} else { // URL
+			} else { // URL-string
 		
 				$.ajax( {
 					url		: jsonData,
 					dataType: "text",
 					cache	: false, 
+					data	: params,
 					success	: function(data) {
-						$(elm).empty().append(_tmpl(vkTemplatesCache[urlTmpl],jQuery.parseJSON(data)));	
-						if(typeof(callback) === 'function') {
-							callback(elm);
+						var jsonObj = jQuery.parseJSON(data);
+						$(elm).empty().append(_tmpl(vkTemplatesCache[urlTmpl],jsonObj));	
+						if(callback) {
+							callback(elm, jsonObj);
 						}
 					}
 				});
@@ -80,7 +105,7 @@
 			var elm = this;
 
 			if(vkTemplatesCache[urlTmpl]) { //template has been cashed;
-				_getData(jsonData, elm, callback);
+				_getData(jsonData, elm, params, callback);
 				
 			} else { //get template with ajax
 
@@ -89,7 +114,7 @@
 					dataType: "text",
 					success: function(data) { 
 						vkTemplatesCache[urlTmpl] = data; // save template in cache
-						_getData(jsonData, elm, callback);
+						_getData(jsonData, elm, params, callback);
 					}
 				});
 			}
