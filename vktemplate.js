@@ -1,7 +1,7 @@
 /**
 * vkTemplate - jQuery Plugin
 *  
-* Version - 0.4.00.alpha
+* Version - 0.5.00.alpha
 * Copyright (c) 2010 - 2011 Vadim Kiryukhin
 * vkiryukhin @ gmail.com
 * http://www.eslinstructor.net/vktemplate/
