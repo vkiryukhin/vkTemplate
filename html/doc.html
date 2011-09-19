@@ -10,7 +10,7 @@
 	<li>No configuration is needed</li>
 	<li>Include in the page head: <code>&lt;script type="text/javascript" src="vktemplate.js"&gt;&lt;/script&gt;</code>
 
-	<li>Usage format: <code>$('#container').vkTemplate(urlTemplate, jsonData [, callback]);</code>
+	<li>Usage format: <code>$('#container').vkTemplate(urlTemplate, jsonData [, params] [, callback]);</code>
 		
 	</li>
 	<li>Parameters:
@@ -19,17 +19,22 @@
 
 		<li><code>@jsonData</code>:<br/>
 		- URL address to get data.<br/>
-		- JSON string;
+		- JSON string;<br/>
+		- JSON object;
 		</li>
+		<li><code>@params</code> - jQuery Ajax "data" parameter that is sent to the server with jsonData URL if needed (optional)</li>
 		<li><code>@callback</code> - callback function (optional)</li>
 		</ul>
 	</li>
 	
 	<li>Usage Examples:
 		<ul>
-			<li><code>$('#container').vkTemplate(urlTemplate, urlJsonData);</code></li>
-			<li><code>$('#container').vkTemplate(urlTemplate, '{"foo":"bar"}');</code></li>
-			<li><code>$('#container').vkTemplate(urlTemplate, urlJsonData, function(){...});</code></li>
+			<li><code>$('#container').vkTemplate(urlTemplate, urlJsonData);</code> // JSON as URL</li>
+			<li><code>$('#container').vkTemplate(urlTemplate, '{"foo":"bar"}');</code> // JSON as a string </li>
+			<li><code>$('#container').vkTemplate(urlTemplate, {foo:"bar"});</code> // JSON as an object</li>
+			<li><code>$('#container').vkTemplate(urlTemplate, urlJsonData, function(){...});</code> // callback function</li>
+			<li><code>$('#container').vkTemplate(urlTemplate, urlJsonData, {id:123});</code> // jsonData URL with extra parameters</li>
+			<li><code>$('#container').vkTemplate(urlTemplate, urlJsonData, {id:123}, function(){...});</code> // jsonData URL with extra parameters; callback function.</li>
 		</ul>
 	</li>
 	<li>Template syntax:

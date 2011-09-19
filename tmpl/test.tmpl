@@ -1,0 +1,21 @@
+<style type="text/css">
+.basic {border:1px solid orange;margin:1em; padding:0.5em;}
+</style>
+<script>
+var foo = "I'm javascript var tmpl";
+console.log(this)
+</script>
+
+<div class="basic">
+<div class="h5">Test</div>
+
+<div> foo:
+<% if(typeof(foo) !== "undefined") { console.log(this);%>
+	 <%=foo%> 
+ <%}%>
+</div> 
+ 
+ 
+ 
+</div>
+

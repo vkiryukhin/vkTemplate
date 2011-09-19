@@ -1,0 +1,30 @@
+<table>
+<tr><td>
+<div class="h6">Error Handling</div>
+<ul>
+<li>Value of key "<b>state</b>" in this JSON object is empty, but it doesn't crash application.</li>
+<li>Key "<b>country</b>" doesn't exist in this JSON object. Use condition statement to avoid crash at this point.</li>
+</ul>
+</td></tr>
+<tr ><td class="functionDoc">
+<div class="h5">JSON:</div>
+<code>
+{ "first_name":"Vadim", "last_name":"Kiryukhin", <span class="highlight">"state":""</span>}
+</code>
+</td></tr><tr><td class="templateDoc">
+<div class="h5">Template:</div>
+<pre><code>
+My name is 
+&lt;%=first_name%> &lt;%=last_name%&gt;.
+Greeting from <span class="highlight">&lt;%=state%&gt;</span>
+&lt;% if(typeof(country) !== "undefined") {%&gt;
+  <span class="highlight">&lt;%=country%&gt;</span>
+&lt;%}%&gt;!
+</code></pre>
+</td></tr>
+<tr ><td class="jsonDoc">
+<div class="h5">Function:</div>
+<code>
+$('#leftpanel').vkTemplate('error_handling.tmpl','error_handling.php');
+</code>
+</td></tr></table>

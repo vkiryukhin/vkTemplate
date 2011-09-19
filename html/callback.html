@@ -19,6 +19,6 @@ With this function you can resize existing and/or loaded elements, adjust layout
 <tr ><td class="jsonDoc">
 <div class="h5">Function:</div>
 <code>
-$('#leftpanel').vkTemplate('basic.tmpl','basic.php',<span class="highlight"> function(){$('#leftpanel div').css('background-color','yellow')}</span>);
+$('#leftpanel').vkTemplate('basic.tmpl','basic.php',<span class="highlight"> function(elm,jsonObj){$(elm).children().css('background-color','yellow')}</span>);
 </code>
 </td></tr></table>

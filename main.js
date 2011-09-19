@@ -1,6 +1,4 @@
 
-var hInterval = 0;
-
 $(document).ready(function()
 {
 	$('#leftpanel').empty().load('tmpl/overview.tmpl');
@@ -28,7 +26,7 @@ function loadTemplate(name)
 			$('#rightpanel').empty().load('html/basic.html');
 		break;
 		case 'callback':
-			$('#leftpanel').vkTemplate('tmpl/basic.tmpl','php/basic.php', function(elm,jsonObj){$('#leftpanel div').css('background-color','yellow')});
+			$('#leftpanel').vkTemplate('tmpl/basic.tmpl','php/basic.php', function(elm,jsonObj){$(elm).children().css('background-color','yellow')});
 			$('#rightpanel').empty().load('html/callback.html');
 		break;
 		case 'loop':
@@ -51,9 +49,9 @@ function loadTemplate(name)
 			$('#leftpanel').load('tmpl/csi.tmpl');
 			$('#rightpanel').empty().load('html/csi.html');
 		break;
-		case 'empty_string':
-			$('#leftpanel').vkTemplate('tmpl/basic.tmpl','php/empty_string.php');
-			$('#rightpanel').empty().load('html/empty_string.html');
+		case 'error_handling':
+			$('#leftpanel').vkTemplate('tmpl/error_handling.tmpl','php/error_handling.php');
+			$('#rightpanel').empty().load('html/error_handling.html');
 		break;
 		
 		case 'integration':
@@ -62,26 +60,16 @@ function loadTemplate(name)
 		break;
 		
 		case 'test':
-			$('#leftpanel').vkTemplate('tmpl/test.tmpl','{"foooo":"bar"}', function(){$('#leftpanel div').css('background-color','yellow')});
+			//$('#leftpanel').vkTemplate('tmpl/test.tmpl','{"foozzz":"I am json value","bar":"123"}');
+			//$('#leftpanel').vkTemplate.call(this,'tmpl/test.tmpl','{"foozz":"I am json value"}');
 			
 			//$('#leftpanel').vkTemplate('tmpl/test.tmpl','php/basic.php', function(){$('#leftpanel div').css('background-color','yellow')});
 			
 			//$('#leftpanel').vkTemplate('tmpl/test.tmpl','php/basic.php',{foo:"bar",aaa:123});
+			$('#leftpanel').vkTemplate('tmpl/test.tmpl',{foo:123});
 			
 			$('#rightpanel').empty().load('html/callback.html');
 		break;
 		
-	}
-}
-
-function toggleApiDetails(obj) {
-	var re = /closed/;
-	var state = $(obj).css("background-image");
-	if (state.search(re) != -1) {
-		$(obj).css("background-image",'url("img/demo-spindown-open.gif")');
-		$(obj).children(".apiDetails").css("display","block");
-	} else {
-		$(obj).css("background-image",'url("img/demo-spindown-closed.gif")');
-		$(obj).children(".apiDetails").css("display","none");
 	}
 }

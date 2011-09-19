@@ -1,7 +1,7 @@
 /**
 * vkTemplate - jQuery Plugin
 *  
-* Version - 0.5.00.alpha
+* Version - 0.9.00.beta
 * Copyright (c) 2010 - 2011 Vadim Kiryukhin
 * vkiryukhin @ gmail.com
 * http://www.eslinstructor.net/vktemplate/
@@ -12,27 +12,28 @@
 *
 * _tmpl function is "Micro-Templating" engine, 
 * originally written by John Resig ( http://ejohn.org/ - MIT Licensed )
-* and modified by Vadim Kiryukhin. To fix issue with single quotes, Neil's comment at 
+* and modified by Vadim Kiryukhin. Issue with single quotes is fixed based on Neil's comment at 
 * http://www.west-wind.com/weblog/posts/2008/Oct/13/Client-Templating-with-jQuery
-* is used.
 *
 *	.vkTemplate(urlTemplate, jsonData, [params], [callback(elm, data)]) 
 *
 * PARAMETERS:
 *
 *	@urlTemplate  	- template URL;
-* 	@jsonData		- either json string or URL to data 
-*	@params			- a map or string that is sent to the server with the jsonData request if jsonData 
-*					  is URL. See jQuery Ajax "data" parameter for detailes. (optional)
+* 	@jsonData		- can be either json object or json string or URL 
+*	
+*	@params			- jQuery Ajax "data" parameter that is sent to the 
+*                     server with jsonData URL if needed (optional)
 * 	@function		- callback function (optional)
 *
 * USAGE:
 *	
 *	$('#container').vkTemplate('myTemplate.tmpl','myData.php'); 
 *	$('#container').vkTemplate('myTemplate.tmpl','{"foo":"bar"}');
+*	$('#container').vkTemplate('myTemplate.tmpl',{foo:"bar"});
 *	$('#container').vkTemplate('myTemplate.tmpl','myData.php', function(elm, jsonObj){...});
-*   $('#container').vkTemplate('myTemplate.tmpl','myData.php', {foo:"bar"});
-*	$('#container').vkTemplate('myTemplate.tmpl','myData.php', {foo:"bar"}, function(elm, jsonObj){...});
+*   $('#container').vkTemplate('myTemplate.tmpl','myData.php', {id:123});
+*	$('#container').vkTemplate('myTemplate.tmpl','myData.php', {id:123}, function(elm, jsonObj){...});
 
 *		
 */
@@ -58,17 +59,20 @@
 				return fn( data );
 		};
 	
-		function _getData(jsonData, elm, params, callback) { // jsonData: either JSON-string or URL
+		function _getData(jsonData, elm, params, callback) { 
 		
-			if ( params ) {// If it's a function
-				if ( jQuery.isFunction( params ) ) {// We assume that it's the callback
+			// both "params" and "callback" arguments are optional, so let's check 
+			//if the 3rd argument exists and either it is an object or a function.
+			if ( params ) {
+				if ( jQuery.isFunction( params ) ) {// We assume that it's the callback function
 					callback = params;
 					params = null;
-				} else if ( typeof params === "object" ) {// Otherwise, build a param string
+				} else if ( typeof params === "object" ) {// Otherwise, build a param string for ajax request
 					params = jQuery.param( params );
 				}
 			}
 	
+			// jsonData can be: object | string | URL
 			if( typeof(jsonData) === 'object') {//json object
 				$(elm).empty().append(_tmpl(vkTemplatesCache[urlTmpl],jsonData));	
 				if(callback) {
@@ -90,6 +94,7 @@
 					dataType: "text",
 					cache	: false, 
 					data	: params,
+					context : elm,
 					success	: function(data) {
 						var jsonObj = jQuery.parseJSON(data);
 						$(elm).empty().append(_tmpl(vkTemplatesCache[urlTmpl],jsonObj));	
