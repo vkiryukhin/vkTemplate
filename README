@@ -1,0 +1,39 @@
+/**
+* vkTemplate - jQuery Plugin
+*  
+* Version - 0.9.00.beta
+* Copyright (c) 2010 - 2011 Vadim Kiryukhin
+* vkiryukhin @ gmail.com
+* http://www.eslinstructor.net/vktemplate/
+* 
+* Dual licensed under the MIT and GPL licenses:
+*   http://www.opensource.org/licenses/mit-license.php
+*   http://www.gnu.org/licenses/gpl.html
+*
+* _tmpl function is "Micro-Templating" engine, 
+* originally written by John Resig ( http://ejohn.org/ - MIT Licensed )
+* and modified by Vadim Kiryukhin. Issue with single quotes is fixed based on Neil's comment at 
+* http://www.west-wind.com/weblog/posts/2008/Oct/13/Client-Templating-with-jQuery
+*
+*	.vkTemplate(urlTemplate, jsonData, [params], [callback(elm, data)]) 
+*
+* PARAMETERS:
+*
+*	@urlTemplate  	- template URL;
+* 	@jsonData		- can be either json object or json string or URL 
+*	
+*	@params			- jQuery Ajax "data" parameter that is sent to the 
+*                     server with jsonData URL if needed (optional)
+* 	@function		- callback function (optional)
+*
+* USAGE:
+*	
+*	$('#container').vkTemplate('myTemplate.tmpl','myData.php'); 
+*	$('#container').vkTemplate('myTemplate.tmpl','{"foo":"bar"}');
+*	$('#container').vkTemplate('myTemplate.tmpl',{foo:"bar"});
+*	$('#container').vkTemplate('myTemplate.tmpl','myData.php', function(elm, jsonObj){...});
+*   $('#container').vkTemplate('myTemplate.tmpl','myData.php', {id:123});
+*	$('#container').vkTemplate('myTemplate.tmpl','myData.php', {id:123}, function(elm, jsonObj){...});
+*
+*		
+*/
