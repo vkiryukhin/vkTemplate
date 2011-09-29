@@ -1,7 +1,7 @@
 /**
 * vkTemplate - jQuery Plugin
 *  
-* Version - 0.9.00.beta (using "with()" statement)
+* Version - 0.9.00.beta (no "with()" statement)
 * Copyright (c) 2010 - 2011 Vadim Kiryukhin
 * vkiryukhin @ gmail.com
 * http://www.eslinstructor.net/vktemplate/
@@ -47,15 +47,18 @@
 		function _tmpl(str, data){ //modified Micro-Templating engine
 				var fn = new Function("obj",
 				"var p=[],print=function(){p.push.apply(p,arguments);};" +
-				"with(obj){p.push('" +
+				//"with(obj){p.push('" +
+				"	p.push('" +
 				str.replace(/[\r\t\n]/g, " ")
 					.replace(/'(?=[^%]*%>)/g,"\t")
 					.split("'").join("\\'")
 					.split("\t").join("'")
-					.replace(/<%=(.+?)%>/g, "',$1,'")
+					//.replace(/<%=(.+?)%>/g, "',$1,'")
+					.replace(/<%=(.+?)%>/g, "',obj.$1,'")
 					.split("<%").join("');")
 					.split("%>").join("p.push('")
-					+ "');}return p.join('');");
+					//+ "');}return p.join('');");
+					+ "');    return p.join('');");
 				return fn( data );
 		};
 	
