@@ -53,13 +53,14 @@
 					.replace(/'(?=[^%]*%>)/g,"\t")
 					.split("'").join("\\'")
 					.split("\t").join("'")
-					//.replace(/<%=(.+?)%>/g, "',$1,'")
-					.replace(/<%=(.+?)%>/g, "',obj.$1,'")
+					.replace(/<%=(.+?)%>/g, "',$1,'")
+					//.replace(/<%=(.+?)%>/g, "',this.$1,'")
 					.split("<%").join("');")
 					.split("%>").join("p.push('")
 					//+ "');}return p.join('');");
 					+ "');    return p.join('');");
-				return fn( data );
+				//return fn( data );
+				return fn.apply(data);
 		};
 	
 		function _getData(jsonData, elm, params, callback) { 
