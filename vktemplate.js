@@ -43,24 +43,25 @@
 	var vkTemplatesCache = {};
 	
 	jQuery.fn.vkTemplate = function (urlTmpl, jsonData, params, callback ) {
-	
-		function _tmpl(str, data){ //modified Micro-Templating engine
-				var fn = new Function("obj",
+/*
+ * Use "o." notation in the withfree Micro-Templating notation:
+ * <%= o.id %> <%= o.first_name %> <%= o.last_name %>
+ * <% if(o.id == ... ) {} %> 
+ */
+		function _tmpl(str, data){ //withfree Micro-Templating engine
+				var fn = new Function("o",
 				"var p=[],print=function(){p.push.apply(p,arguments);};" +
-				//"with(obj){p.push('" +
 				"	p.push('" +
 				str.replace(/[\r\t\n]/g, " ")
 					.replace(/'(?=[^%]*%>)/g,"\t")
 					.split("'").join("\\'")
 					.split("\t").join("'")
 					.replace(/<%=(.+?)%>/g, "',$1,'")
-					//.replace(/<%=(.+?)%>/g, "',this.$1,'")
+					.replace(/<%=(.+?)%>/g, "',this.$1,'")
 					.split("<%").join("');")
 					.split("%>").join("p.push('")
-					//+ "');}return p.join('');");
 					+ "');    return p.join('');");
-				//return fn( data );
-				return fn.apply(data);
+				return fn( data );
 		};
 	
 		function _getData(jsonData, elm, params, callback) { 
