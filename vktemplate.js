@@ -1,7 +1,7 @@
 /**
 * vkTemplate - jQuery Plugin
 *  
-* Version - 0.9.00.beta (no "with()" statement)
+* Version - 0.3.00.withfree.alpha (no "with()" statement)
 * Copyright (c) 2010 - 2011 Vadim Kiryukhin
 * vkiryukhin @ gmail.com
 * http://www.eslinstructor.net/vktemplate/
@@ -45,8 +45,8 @@
 	jQuery.fn.vkTemplate = function (urlTmpl, jsonData, params, callback ) {
 /*
  * Use "o." notation in the withfree Micro-Templating notation:
- * <%= o.id %> <%= o.first_name %> <%= o.last_name %>
- * <% if(o.id == ... ) {} %> 
+ * <%= o.first_name %> <%= o.last_name %>
+ * <% if(o.first_name == ... ) {} %> 
  */
 		function _tmpl(str, data){ //withfree Micro-Templating engine
 				var fn = new Function("o",
