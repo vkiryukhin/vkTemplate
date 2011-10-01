@@ -5,10 +5,10 @@
 
 <div class="basic">
 	<div class="h5">Error Handling.</div>
-	<div> My name is <%=first_name%> <%=last_name%>. </div>
-	<div>Greeting from <%=state%> 
-		<% if(typeof(country) !== "undefined") {%>
-			<%=country%>
+	<div> My name is <%=o.first_name%> <%=o.last_name%>. </div>
+	<div>Greeting from <%=o.state%> 
+		<% if(typeof(o.country) !== "undefined") {%>
+			<%=o.country%>
 		<%}%>	
 	!</div>
 </div>

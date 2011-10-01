@@ -7,12 +7,12 @@
 <div class="h5">Conditionally nested:</div>
 
 	<ul>
-		<li>Current time is: <%=h%>:<%=m%>:<%=s%></li>
+		<li>Current time is: <%=o.h%>:<%=o.m%>:<%=o.s%></li>
 	</ul>
 
 	<div id="subcontainer"></div>
 	<ul style=""><li>
-		<%if (s%2) {%> 
+		<%if (o.s%2) {%> 
 			odd second
 			<script type="text/javascript">$('#subcontainer').vkTemplate('tmpl/basic.tmpl','php/basic.php');</script>
 		<%} else {%> 
