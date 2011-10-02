@@ -10,9 +10,9 @@ Click on "Conditions" menu item several times to see how it works.
 </td></tr><tr><td class="templateDoc">
 <div class="h5">Template:</div>
 <pre><code>
-Current time is: <%=h%>:<%=m%>:<%=s%>
+Current time is: <%=o.h%>:<%=o.m%>:<%=o.s%>
 
-&lt;%if (s%2) {%&gt; 
+&lt;%if (o.s%2) {%&gt; 
   odd second 
 &lt;%} else {%&gt;
   even second

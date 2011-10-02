@@ -34,7 +34,10 @@
 *	$('#container').vkTemplate('myTemplate.tmpl','myData.php', function(elm, jsonObj){...});
 *   $('#container').vkTemplate('myTemplate.tmpl','myData.php', {id:123});
 *	$('#container').vkTemplate('myTemplate.tmpl','myData.php', {id:123}, function(elm, jsonObj){...});
-
+*
+*	Use "o." suffix with this version of Strict Mode Compatible Micro-Templating engine:
+* 	object:    {first_name:"John",last_name:"Smith"} 
+* 	template:  <%= o.first_name %>  <% if(o.first_name == ... ) {} %> 
 *		
 */
 
@@ -43,25 +46,21 @@
 	var vkTemplatesCache = {};
 	
 	jQuery.fn.vkTemplate = function (urlTmpl, jsonData, params, callback ) {
-/*
- * Use "o." notation in the withfree Micro-Templating notation:
- * <%= o.first_name %> <%= o.last_name %>
- * <% if(o.first_name == ... ) {} %> 
- */
-		function _tmpl(str, data){ //withfree Micro-Templating engine
-				var fn = new Function("o",
+
+		function _tmpl(str, data){ 
+			var fn = new Function("o",
 				"var p=[],print=function(){p.push.apply(p,arguments);};" +
 				"	p.push('" +
 				str.replace(/[\r\t\n]/g, " ")
-					.replace(/'(?=[^%]*%>)/g,"\t")
-					.split("'").join("\\'")
-					.split("\t").join("'")
-					.replace(/<%=(.+?)%>/g, "',$1,'")
-					.replace(/<%=(.+?)%>/g, "',this.$1,'")
-					.split("<%").join("');")
-					.split("%>").join("p.push('")
-					+ "');    return p.join('');");
-				return fn( data );
+				.replace(/'(?=[^%]*%>)/g,"\t")
+				.split("'").join("\\'")
+				.split("\t").join("'")
+				.replace(/<%=(.+?)%>/g, "',$1,'")
+				.replace(/<%=(.+?)%>/g, "',this.$1,'")
+				.split("<%").join("');")
+				.split("%>").join("p.push('")
+				+ "');    return p.join('');");
+			return fn( data );
 		};
 	
 		function _getData(jsonData, elm, params, callback) { 

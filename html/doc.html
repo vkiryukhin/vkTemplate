@@ -43,13 +43,30 @@
 		<li>stuff which should be printed is wrapped with  <b>&lt;%= ... &gt;</b></li>
 		</ul>
 	</li>
+	
+	<li>Template object prefix:
+		<ul>
+		<li>use <code><big><b>'o.'</b></big></code> prefix to refer json object  <br/>
+		object: <code> {first_name:"John",state:"California"}</code> <br/>
+		template:  Hi <code>&lt;%=o.first_name&gt; Welcom to &lt;%=o.state&gt;!</b></code>
+		</ul>
+	</li>
+	
 	<li>Template Examples:
 		<ul>
-		<li><code>&lt;%=first_name%> &lt;%=last_name%&gt;</code></li>
-		<li><pre><code>&lt;%for(var ix=0;ix&lt;time.length;ix++) {%&gt;
-  time is: &lt;%=time[ix].h%&gt;:&lt;%=time[ix].m%&gt;:&lt;%=time[ix].s%&gt;
+		<li><code>&lt;%=o.first_name%> &lt;%=o.last_name%&gt;</code></li>
+		<li><pre><code>&lt;%for(var ix=0;ix&lt;o.time.length;ix++) {%&gt;
+  time is: &lt;%=o.time[ix].h%&gt;:&lt;%=o.time[ix].m%&gt;:&lt;%=o.time[ix].s%&gt;
 &lt;%}%&gt;</code></pre>
 		</li>
+		
+		<li><pre><code>&lt;%if (o.first_name == "Ann") {%&gt; 
+  . . .
+&lt;%} else {%&gt;
+  . . 
+&lt;%}%&gt;</code></pre>
+</li>
+		
 		</ul>
 	</li>
 </ul>

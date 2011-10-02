@@ -12,9 +12,9 @@ Click on "Conditionally Nested" menu item several times to see how it works.
 </td></tr><tr><td class="templateDoc">
 <div class="h5">Template:</div>
 <pre><code>
- Current time is: &lt;%=h%&gt;:&lt;%=m%&gt;:&lt;%=s%&gt;
+ Current time is: &lt;%=o.h%&gt;:&lt;%=o.m%&gt;:&lt;%=o.s%&gt;
 
-&lt;%if (s%2) {%&gt; 
+&lt;%if (o.s%2) {%&gt; 
   odd second<span class="highlight">
   &lt;script type="text/javascript"&gt;
     $('#subcontainer').vkTemplate('basic.tmpl','basic.php');

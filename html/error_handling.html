@@ -15,10 +15,10 @@
 <div class="h5">Template:</div>
 <pre><code>
 My name is 
-&lt;%=first_name%> &lt;%=last_name%&gt;.
-Greeting from <span class="highlight">&lt;%=state%&gt;</span>
+&lt;%=o.first_name%> &lt;%=o.last_name%&gt;.
+Greeting from <span class="highlight">&lt;%=o.state%&gt;</span>
 &lt;% if(typeof(country) !== "undefined") {%&gt;
-  <span class="highlight">&lt;%=country%&gt;</span>
+  <span class="highlight">&lt;%=o.country%&gt;</span>
 &lt;%}%&gt;!
 </code></pre>
 </td></tr>
