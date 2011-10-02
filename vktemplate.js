@@ -35,7 +35,7 @@
 *   $('#container').vkTemplate('myTemplate.tmpl','myData.php', {id:123});
 *	$('#container').vkTemplate('myTemplate.tmpl','myData.php', {id:123}, function(elm, jsonObj){...});
 *
-*	Use "o." suffix with this version of Strict Mode Compatible Micro-Templating engine:
+*	Use "o." prefix with this version of Strict Mode Compatible Micro-Templating engine:
 * 	object:    {first_name:"John",last_name:"Smith"} 
 * 	template:  <%= o.first_name %>  <% if(o.first_name == ... ) {} %> 
 *		
