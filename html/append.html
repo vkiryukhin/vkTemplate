@@ -1,0 +1,35 @@
+<table>
+<tr><td>
+<div class="h6">Append Technique</div>
+<p>
+<input type="button" value="Append" onclick="$('<span>').vkTemplate('tmpl/basic.tmpl','php/basic.php', function(elm, jsonData){$('#leftpanel').append($(elm).html());});" />
+</p>
+<p>
+All examples above demonstrate "replace" technique - all content of the element-container ( the element which plugin is attached to) is replaced with template stuff. </p><p>
+But very often we need to keep container's content and append or prepend template to the content rather than replace it. Say, we want to add another item to a list. This example shows how to do this.
+</p><p>
+In this function <code>&lt;span&gt;</code> element is used as a parent element to wrap template content.  You can keep it or get rid of it as it's shown in this example. Not only <code>&lt;span&gt;</code>, but any element can be used as a wrapper.
+</p>
+</td></tr>
+
+<tr>
+<td class="functionDoc">
+<div class="h5">JSON:</div>
+<code>
+{ "first_name":"Vadim", "last_name":"Kiryukhin", "state":"California"}
+</code>
+</td></tr><tr><td class="templateDoc">
+<div class="h5">Template:</div>
+<code>
+	My name is &lt;%=o.first_name%> &lt;%=o.last_name%&gt;.
+	Greeting from &lt;%=o.state%&gt;!
+</code>
+</td></tr>
+<tr ><td class="jsonDoc">
+<div class="h5">Function:</div>
+<code><pre>
+$('&lt;span&gt;').vkTemplate('tmpl/basic.tmpl','php/basic.php', function(elm){
+		$('#leftpanel').append($(elm).html());
+	});
+</pre></code>
+</td></tr></table>

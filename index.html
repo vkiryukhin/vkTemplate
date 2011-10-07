@@ -10,11 +10,17 @@
 <script type="text/javascript" src="main.js"></script>
 <link rel="stylesheet" type="text/css" href="main.css" media="screen" />
 <title>vkTemplate - jQuery template plugin</title>
+
 <script type="text/javascript">
-var foo = "bar";
-var o = {};
-o.first_name = "test";
-//o.s="zzz";
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17957489-12']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 </script>
 </head>
 <body>
@@ -46,6 +52,7 @@ o.first_name = "test";
 		<li onclick="loadTemplate('nested_conditionally')">Conditionally Nested</li>
 		<li onclick="loadTemplate('csi')">Client Side Include</li>
 		<li onclick="loadTemplate('error_handling')">JSON Eror Handling</li>
+		<li onclick="loadTemplate('append')">Append Technique</li>
 		<li onclick="loadTemplate('integration')">Integration</li>
 		<!--li onclick="loadTemplate('test')">test</li-->
 		

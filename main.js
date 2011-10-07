@@ -58,6 +58,10 @@ function loadTemplate(name)
 			$('#leftpanel').empty().load('tmpl/integration.tmpl');
 			$('#rightpanel').empty().load('html/integration.html');
 		break;
+		case 'append':
+			$('#leftpanel').vkTemplate('tmpl/basic.tmpl','php/basic.php');
+			$('#rightpanel').empty().load('html/append.html');
+			break;
 		
 		case 'test':
 			//$('#leftpanel').vkTemplate('tmpl/test.tmpl','{"foozzz":"I am json value","bar":"123"}');
