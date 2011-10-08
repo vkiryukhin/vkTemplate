@@ -56,7 +56,6 @@
 				.split("'").join("\\'")
 				.split("\t").join("'")
 				.replace(/<%=(.+?)%>/g, "',$1,'")
-				.replace(/<%=(.+?)%>/g, "',this.$1,'")
 				.split("<%").join("');")
 				.split("%>").join("p.push('")
 				+ "');    return p.join('');");
