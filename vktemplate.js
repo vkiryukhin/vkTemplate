@@ -1,7 +1,7 @@
 /**
 * vkTemplate - jQuery Plugin
 *  
-* Version - 0.91.00.beta ( ECMAScript 5 strict mode compatible, no with() statement.)
+* Version - 0.91.01.beta ( ECMAScript 5 strict mode compatible, no with() statement.)
 * Copyright (c) 2010 - 2011 Vadim Kiryukhin
 * vkiryukhin @ gmail.com
 * http://www.eslinstructor.net/vktemplate/
