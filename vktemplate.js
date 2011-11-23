@@ -1,7 +1,7 @@
 /**
 * vkTemplate - jQuery Plugin
 *  
-* Version - 0.92.00.beta ( ECMAScript 5 strict mode compatible, no with() statement.)
+* Version - 0.93.00.beta ( ECMAScript-5 strict mode compatible)
 * Copyright (c) 2010 - 2011 Vadim Kiryukhin
 * vkiryukhin @ gmail.com
 * http://www.eslinstructor.net/vktemplate/
@@ -35,8 +35,10 @@
 *	$('#container').vkTemplate('myTemplate.tmpl','myData.php', function(elm, jsonObj){...});
 *   $('#container').vkTemplate('myTemplate.tmpl','myData.php', {id:123});
 *	$('#container').vkTemplate('myTemplate.tmpl','myData.php', {id:123}, function(elm, jsonObj){...});
-
-*	If context is provided, all optional parameters must be provided as well. They can be set to null.
+*
+*	When @context is provided, all optional parameters must be provided as well. 
+*   If they are not used, set them to null.
+*
 *   $('#container').vkTemplate('myTemplate.tmpl','myData.php',null,null,contextObj); 
 *
 *	Use "o." prefix with this version of Strict Mode Compatible Micro-Templating engine:
@@ -67,7 +69,7 @@
 		function _getData(jsonData, elm, params, callback, contextObj) { 
 		
 			if(!jsonData) return;
-			var context = (typeof contextObj !== 'undefined') ? contextObj : window;
+			var context = contextObj ? contextObj : window;
 			
 			// both "params" and "callback" arguments are optional, so let's check 
 			// if the 3rd argument exists and either it is an object or a function.

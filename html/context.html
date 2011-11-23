@@ -1,0 +1,44 @@
+<table>
+<tr><td>
+<div class="h6">Context</div>
+<p>
+Default template context is window. But you can change it by passing context object as the 5-th argument. If context is passed, all five arguments must be provided. If you don't need one or both optional arguments, set it/them to null. <br/><br/>
+<code>$('#foo').vkTemplate('basic.tmpl','basic.php',null,null, cntx);</code><br/>
+<code>$('#foo').vkTemplate('basic.tmpl','basic.php',null,function(){...}, cntx);</code><br/>
+<code>$('#foo').vkTemplate('basic.tmpl','basic.php',{foo:"bar"},null, cntx);</code><br/>
+<br/>
+In example bellow I create an object <code>cntx</code>, add member <code>country</code> and pass it to the function. Pay attention, that <code>country</code> doesn't exist in JSON object and template access it with <code>this</code> prefix. <br/> <br/>
+As <code>country</code> doesn't exist in default context (which is <code>window</code>), the first template doesn't display it. But the second template gets <code>cntx</code> object as an argument and replace default context with provided one.
+</p>
+</td></tr>
+<tr ><td class="functionDoc">
+<div class="h5">JSON:</div>
+<code>
+{ "first_name":"Vadim", "last_name":"Kiryukhin", "state":"California"}
+</code>
+</td></tr><tr><td class="templateDoc">
+<div class="h5">Template:</div>
+<code>
+<pre>
+	My name is &lt;%=o.first_name%&gt; &lt;%=o.last_name%&gt;.
+	Greeting from &lt;%=o.state%&gt; 
+	&lt;% if(typeof(this.country) !== "undefined") {%&gt;
+		<span class="highlight"> &lt;%=this.country%&gt;</span>
+	&lt;%}%&gt;
+</pre>
+</code>
+</td></tr>
+<tr ><td class="jsonDoc">
+<div class="h5">Function:</div>
+<code>
+<pre>
+function foo() {
+  var cntx = {};
+  <span class="highlight"> cntx.country = 'USA';</span>
+
+  $('#div1').vkTemplate('context_1.tmpl','basic.php');
+  $('#div2').vkTemplate('context_2.tmpl','basic.php',null,null,<span class="highlight"> cntx</span>);
+}
+</pre>
+</code>
+</td></tr></table>

@@ -1,0 +1,15 @@
+<style type="text/css">
+.basic {border:1px solid orange;margin:1em; padding:0.5em;}
+</style>
+
+
+<div class="basic">
+	<div class="h5">Default Context</div>
+	<div> My name is <%=o.first_name%> <%=o.last_name%>. </div>
+	<div>Greeting from <%=o.state%> 
+		<% if(typeof(this.country) !== "undefined") {%>
+			<%=this.country%>
+		<%}%>	
+	!</div>
+</div>
+

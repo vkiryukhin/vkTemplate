@@ -10,20 +10,21 @@
 	<li>No configuration is needed</li>
 	<li>Include in the page head: <code>&lt;script type="text/javascript" src="vktemplate.js"&gt;&lt;/script&gt;</code>
 
-	<li>Usage format: <code>$('#container').vkTemplate(urlTemplate, jsonData [, params] [, callback]);</code>
+	<li>Usage format: <code>$('#container').vkTemplate(urlTemplate, jsonData [, params] [, callback] [, context]);</code>
 		
 	</li>
 	<li>Parameters:
 		<ul>
-		<li><code>@urlTemplate</code> - URL address to get template;</li>
+		<li><code>@urlTemplate</code> - URL address of the template;</li>
 
-		<li><code>@jsonData</code>:<br/>
-		- URL address to get data.<br/>
+		<li><code>@jsonData</code>: possible types are:<br/>
+		- URL address of the data.<br/>
 		- JSON string;<br/>
 		- JSON object;
 		</li>
 		<li><code>@params</code> - jQuery Ajax "data" parameter that is sent to the server with jsonData URL if needed (optional)</li>
 		<li><code>@callback</code> - callback function (optional)</li>
+		<li><code>@context</code> - context object (optional)</li>
 		</ul>
 	</li>
 	
@@ -35,6 +36,14 @@
 			<li><code>$('#container').vkTemplate(urlTemplate, urlJsonData, function(){...});</code> // callback function</li>
 			<li><code>$('#container').vkTemplate(urlTemplate, urlJsonData, {id:123});</code> // jsonData URL with extra parameters</li>
 			<li><code>$('#container').vkTemplate(urlTemplate, urlJsonData, {id:123}, function(){...});</code> // jsonData URL with extra parameters; callback function.</li>
+		</ul>
+		
+		If context is passed, all five arguments must be provided. <br/>
+		If you don't need one or both optional arguments, set it/them to null.
+		<ul>
+			<li><code>$('#foo').vkTemplate('basic.tmpl','basic.php',null,null, cntx);</code></li>
+			<li><code>$('#foo').vkTemplate('basic.tmpl','basic.php',null,function(){...}, cntx);</code></li>
+			<li><code>$('#foo').vkTemplate('basic.tmpl','basic.php',{foo:"bar"},null, cntx);</code></li>
 		</ul>
 	</li>
 	<li>Template syntax:

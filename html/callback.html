@@ -3,6 +3,14 @@
 <div class="h6">Callback</div>
 <p>After template is rendered, optional callback function can be called. 
 With this function you can resize existing and/or loaded elements, adjust layout, hide loading image, etc.  </p>
+<p>
+Callback function gets 3 arguments:
+<ul>
+<li>@element - element which vkTemplate() is attached to</li>
+<li>@jsonObj - json object </li>
+<li>@context - context which vkTemplate() gets as the 5-th argument </li>
+</ul>
+</p>
 </td></tr>
 <tr ><td class="functionDoc">
 <div class="h5">JSON:</div>
@@ -19,6 +27,6 @@ With this function you can resize existing and/or loaded elements, adjust layout
 <tr ><td class="jsonDoc">
 <div class="h5">Function:</div>
 <code>
-$('#leftpanel').vkTemplate('basic.tmpl','basic.php',<span class="highlight"> function(elm,jsonObj){$(elm).children().css('background-color','yellow')}</span>);
+$('#leftpanel').vkTemplate('basic.tmpl','basic.php',<span class="highlight"> function(elm,jsonObj,cntx){$(elm).children().css('background-color','yellow')}</span>);
 </code>
 </td></tr></table>
