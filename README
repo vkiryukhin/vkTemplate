@@ -1,7 +1,7 @@
 /**
 * vkTemplate - jQuery Plugin
 *  
-* Version - 0.91.00.beta ( ECMAScript 5 strict mode compatible, no with() statement.)
+* Version - 0.93.00.beta ( ECMAScript-5 strict mode compatible)
 * Copyright (c) 2010 - 2011 Vadim Kiryukhin
 * vkiryukhin @ gmail.com
 * http://www.eslinstructor.net/vktemplate/
@@ -15,7 +15,7 @@
 * and modified by Vadim Kiryukhin. Issue with single quotes is fixed based on Neil's comment at 
 * http://www.west-wind.com/weblog/posts/2008/Oct/13/Client-Templating-with-jQuery
 *
-*	.vkTemplate(urlTemplate, jsonData, [params], [callback(elm, data)]) 
+*	.vkTemplate(urlTemplate, jsonData [,params] [,callback(elm, data, context)] [,context]) 
 *
 * PARAMETERS:
 *
@@ -25,6 +25,7 @@
 *	@params			- jQuery Ajax "data" parameter that is sent to the 
 *                     server with jsonData URL if needed (optional)
 * 	@function		- callback function (optional)
+*	@context		- object to pass as a context (optional)
 *
 * USAGE:
 *	
@@ -34,6 +35,11 @@
 *	$('#container').vkTemplate('myTemplate.tmpl','myData.php', function(elm, jsonObj){...});
 *   $('#container').vkTemplate('myTemplate.tmpl','myData.php', {id:123});
 *	$('#container').vkTemplate('myTemplate.tmpl','myData.php', {id:123}, function(elm, jsonObj){...});
+*
+*	When @context is provided, all optional parameters must be provided as well. 
+*   If they are not used, set them to null.
+*
+*   $('#container').vkTemplate('myTemplate.tmpl','myData.php',null,null,contextObj); 
 *
 *	Use "o." prefix with this version of Strict Mode Compatible Micro-Templating engine:
 * 	object:    {first_name:"John",last_name:"Smith"} 
