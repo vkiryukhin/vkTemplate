@@ -1,7 +1,7 @@
 /**
 * vkTemplate - jQuery Plugin
 *  
-* Version - 0.93.00.beta ( ECMAScript-5 strict mode compatible)
+* Version - 0.93.00 ( ECMAScript-5 strict mode compatible)
 * Copyright (c) 2010 - 2011 Vadim Kiryukhin
 * vkiryukhin @ gmail.com
 * http://www.eslinstructor.net/vktemplate/
