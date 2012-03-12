@@ -9,7 +9,7 @@
 </p>
 <p>
 Internationalization (also known as i18n ) is a requirement. Early or later we have to add this feature to our applications. 
-As a rule, it's a big deal because we have to re-design almost everything. And you know what? I was surprised when discovered how easy to implement this feature with vkTemplate. I mean, really easy! One of a big advantage of the <b>vkTemplate</b> plugin is ability to process <span style="color:#0000ff">more then one JSON object within a single template</span>! Which means our template can get and process content from "label" object and from "data" object independently in one pass. Let's take a look at each component.
+As a rule, it's a lot of work because we have to re-design almost everything. But it's not a big deal if we use vkTemplate. One of advantage of the <b>vkTemplate</b> plugin is ability to process <span style="color:#0000ff">more then one JSON object within a single template</span>! Which means your template can get and process content from "label" object and from "data" object independently and simultaneously. Let's take a look at each component.
 </p>
 <p>
 For i18n we need additional componet: <b>dictionary</b>. I suggest you to use following structure: <br/>
@@ -85,7 +85,7 @@ $(document).ready(function()
 ( 0 - for English, 1- for Russian, 2 - for French )<br/>
 and run <code>vkTemplate </code> with correspondent URL<br/>
 <code><pre>
-  window["i18n"].idx = 0; <span style="color:green;"><-- <i>select lable language</i></span> 
+  window["i18n"].idx = 0; <span style="color:green;"><-- <i>select label language</i></span> 
   $('#leftpanel').vkTemplate('tmpl/i18n.tmpl','php/basic_en.php');
                                               <span style="color:green;">^-----------------^
                                               <i>select data language</i></span>
