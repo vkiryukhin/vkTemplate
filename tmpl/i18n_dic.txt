@@ -1,0 +1,6 @@
+﻿{
+"label_first_name"   :["First Name","Имя","Nom"],
+"label_last_name"    :["Last Name","Фамилия","Nom de famille"],
+"label_state":["State","Штат","Region"]
+}
+

@@ -1,0 +1,26 @@
+<style type="text/css">
+.basic {border:1px solid orange;margin:1em; padding:0.5em;}
+.i18n_label {width:9em; font-weight:bold; float:left; margin-right:1em;}
+.i18n_data {width:7em;float:left;}
+</style>
+
+
+<div class="basic">
+
+<% 
+	var idx = window["i18n"].idx;
+	var dic = window["i18n"].dic;
+ %>
+	<div class="i18n_label"><%=dic["label_first_name"][idx]%>:</div>
+	<div class="i18n_data"><%=o.first_name%></div>
+	<br clear="all"/>
+	<div class="i18n_label"><%=dic["label_last_name"][idx]%>:</div>
+	<div class="i18n_data"><%=o.last_name%></div>
+	<br clear="all"/>
+	<div class="i18n_label"><%=dic["label_state"][idx]%>:</div>
+	<div class="i18n_data"><%=o.state%></div>
+	<br clear="all"/>
+</div>
+
+
+

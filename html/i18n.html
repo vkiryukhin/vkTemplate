@@ -1,0 +1,95 @@
+﻿<table>
+<tr><td>
+<br/>
+<div class="h6">i18n / Internationalization</div>
+<p style="text-align:center;">
+<input type="button" value="English" onclick="load_i18n_tmpl(0)" />
+<input type="button" value="Russian" onclick="load_i18n_tmpl(1)" />
+<input type="button" value="French" onclick="load_i18n_tmpl(2)" />
+</p>
+<p>
+Internationalization (also known as i18n ) is a requirement. Early or later we have to add this feature to our applications. 
+As a rule, it's a big deal because we have to re-design almost everything. And you know what? I was surprised when discovered how easy to implement this feature with vkTemplate. I mean, really easy! One of a big advantage of the <b>vkTemplate</b> plugin is ability to process <span style="color:#0000ff">more then one JSON object within a single template</span>! Which means our template can get and process content from "label" object and from "data" object independently in one pass. Let's take a look at each component.
+</p>
+<p>
+For i18n we need additional componet: <b>dictionary</b>. I suggest you to use following structure: <br/>
+<code>  lable:[English, Russian, French] </code>. 
+<br/>As you maybe expected, it should be JSON. The first language is English, the second one is Russian and the third one is French. Language order does not matter. I also suggest you to keep dictionary file on your server and load once in <code>$(document).ready()</code> function as shown in "Function" section. 
+
+
+</p>
+</td></tr>
+<tr><td class="functionDoc">
+<div class="h5">Dictionary JSON:</div>
+<code><pre>
+{
+    "label_first_name":["First Name", "Имя",     "Nom"            ],
+    "label_last_name" :["Last Name",  "Фамилия", "Nom de famille" ],
+    "label_state"     :["State",      "Штат",    "Etat"           ]
+}
+                       ^----------^   ^-------^   ^-------------^
+                       #0 English    #1 Russian     #2 French					   
+</pre></code>
+
+</td></tr>
+<tr><td class="functionDoc">
+<div class="h5">Data JSON:</div>
+<pre>
+English
+<code>{ "first_name":"John", "last_name":"Smith", "state":"California"}</code>
+Russian
+<code>{ "first_name":"Джон", "last_name":"Смит", "state":"Калифорния"}</code>
+French<code>
+{ "first_name":"Jean", "last_name":"Smith", "state":"la Californie"}</code>
+</pre>
+Depend on user's choice you can request data in different languages, 
+or you can <br/>request the same data for all languages if the data is language-neural like <br/>
+numbers, dates, fragment of code, etc.
+</td></tr>
+
+<tr><td class="templateDoc">
+<div class="h5">Template:</div>
+to make code cleaner and faster let's assign global vars to local ones.
+<code><pre>
+&lt;% 
+  var idx = window["i18n"].idx; 
+  var dic = window["i18n"].dic;
+ %&gt;
+  &lt;%=dic["label_first_name"][idx]%&gt;  : &lt;%=o.first_name%&gt;
+  &lt;%=dic["label_last_name"][idx] %&gt;  : &lt;%=o.last_name%&gt;
+  &lt;%=dic["label_state"][idx]     %&gt;  : &lt;%=o.state%&gt;
+  </code> 
+ ^----------------------------------^        ^--------------------^ 
+    dictionary JSON                                data JSON
+ </pre>
+</td></tr>
+<tr ><td class="jsonDoc">
+<div class="h5">Function:</div>
+1. Build dictionary object ones as soon as application is loaded and make it global:
+<code><pre>
+$(document).ready(function()
+{
+  $.ajax( {
+    url : 'tmpl/i18n_dic.txt',
+    dataType: "text",
+    success	: function(data) {
+      window["i18n"] = {};
+      window["i18n"].dic = jQuery.parseJSON(data);
+      window["i18n"].idx = 0; /* English */
+    }
+  });
+});
+</pre></code>
+
+2. When you need to load a template set desired <code>language_index</code> <br/>
+( 0 - for English, 1- for Russian, 2 - for French )<br/>
+and run <code>vkTemplate </code> with correspondent URL<br/>
+<code><pre>
+  window["i18n"].idx = 0; <span style="color:green;"><-- <i>select lable language</i></span> 
+  $('#leftpanel').vkTemplate('tmpl/i18n.tmpl','php/basic_en.php');
+                                              <span style="color:green;">^-----------------^
+                                              <i>select data language</i></span>
+											  
+</pre></code>
+
+</td></tr></table>

@@ -4,7 +4,15 @@ $(document).ready(function()
 	$('#leftpanel').empty().load('tmpl/overview.tmpl');
 	$('#rightpanel').empty().load('html/overview.html');
 
-
+	$.ajax( {
+			url		: 'tmpl/i18n_dic.txt',
+			dataType: "text",
+			success	: function(data) {
+				window["i18n"] = {};
+				window["i18n"].dic = jQuery.parseJSON(data);
+				window["i18n"].idx = 0; //English
+			}
+		});
 });
 
 function loadTemplate(name)
@@ -87,9 +95,34 @@ function loadTemplate(name)
 		*/	
 			$('#rightpanel').empty().load('html/context.html');
 			break;
+			
+		case 'i18n':
+			$('#leftpanel').vkTemplate('tmpl/i18n.tmpl','php/basic_en.php');
+			$('#rightpanel').empty().load('html/i18n.html');
+			break;	
+			
 		case 'tipstricks':
 			$('#leftpanel').empty();//.vkTemplate('tmpl/basic.tmpl','php/basic.php');
 			$('#rightpanel').empty().load('html/tipstricks.html');
+			break;
+	}
+}
+
+function load_i18n_tmpl(language_id){
+	
+	window["i18n"].idx = language_id;
+	switch (language_id) {
+		case 0:
+			$('#leftpanel').vkTemplate('tmpl/i18n.tmpl','php/basic_en.php');
+			break;
+		case 1:
+			$('#leftpanel').vkTemplate('tmpl/i18n.tmpl','php/basic_ru.php');
+			break;
+		case 2:
+			$('#leftpanel').vkTemplate('tmpl/i18n.tmpl','php/basic_fr.php');
+			break;
+		default:
+			$('#leftpanel').vkTemplate('tmpl/i18n.tmpl','php/basic_en.php');
 			break;
 	}
 }
