@@ -1,48 +1,83 @@
-/**
-* vkTemplate - jQuery Plugin
-*  
-* Version - 0.93.00 ( ECMAScript-5 strict mode compatible)
-* Copyright (c) 2010 - 2011 Vadim Kiryukhin
-* vkiryukhin @ gmail.com
-* http://www.eslinstructor.net/vktemplate/
-* 
-* Dual licensed under the MIT and GPL licenses:
-*   http://www.opensource.org/licenses/mit-license.php
-*   http://www.gnu.org/licenses/gpl.html
-*
-* _tmpl function is "Micro-Templating" engine, 
-* originally written by John Resig ( http://ejohn.org/ - MIT Licensed )
-* and modified by Vadim Kiryukhin. Issue with single quotes is fixed based on Neil's comment at 
-* http://www.west-wind.com/weblog/posts/2008/Oct/13/Client-Templating-with-jQuery
-*
-*	.vkTemplate(urlTemplate, jsonData [,params] [,callback(elm, data, context)] [,context]) 
-*
-* PARAMETERS:
-*
-*	@urlTemplate  	- template URL;
-* 	@jsonData		- can be either json object or json string or URL 
-*	
-*	@params			- jQuery Ajax "data" parameter that is sent to the 
-*                     server with jsonData URL if needed (optional)
-* 	@function		- callback function (optional)
-*	@context		- object to pass as a context (optional)
-*
-* USAGE:
-*	
-*	$('#container').vkTemplate('myTemplate.tmpl','myData.php'); 
-*	$('#container').vkTemplate('myTemplate.tmpl','{"foo":"bar"}');
-*	$('#container').vkTemplate('myTemplate.tmpl',{foo:"bar"});
-*	$('#container').vkTemplate('myTemplate.tmpl','myData.php', function(elm, jsonObj){...});
-*   $('#container').vkTemplate('myTemplate.tmpl','myData.php', {id:123});
-*	$('#container').vkTemplate('myTemplate.tmpl','myData.php', {id:123}, function(elm, jsonObj){...});
-*
-*	When @context is provided, all optional parameters must be provided as well. 
-*   If they are not used, set them to null.
-*
-*   $('#container').vkTemplate('myTemplate.tmpl','myData.php',null,null,contextObj); 
-*
-*	Use "o." prefix with this version of Strict Mode Compatible Micro-Templating engine:
-* 	object:    {first_name:"John",last_name:"Smith"} 
-* 	template:  <%= o.first_name %>  <% if(o.first_name == ... ) {} %> 
-*		
-*/
+**vkTemplate - jQuery Plugin**
+  
+**Version** - 0.94.00 ( ECMAScript-5 strict mode compatible)
+
+**Copyright** (c) 2010 - 2012 Vadim Kiryukhin  ( vkiryukhin @ gmail.com )
+
+**project's home page:**  http://www.eslinstructor.net/vktemplate/
+ 
+Dual licensed under the MIT and GPL licenses:
+
+http://www.opensource.org/licenses/mit-license.php
+
+http://www.gnu.org/licenses/gpl.html
+
+---
+
+   - No configuration is needed
+
+   - Include in the page head: < script type="text/javascript" src="vktemplate.js"></script>
+
+   - **Usage format:** 
+
+$('#container').vkTemplate(tmpl, jsonData [, params] [, callback] [, context]);
+
+   - **Parameters:**
+
+       - @tmpl - template URL address or element's ID;
+       - @jsonData: possible types are:
+        - URL address of the data.
+        - JSON string;
+        - JSON object;
+
+       - @params - jQuery Ajax "data" parameter that is sent to the server with jsonData URL if needed (optional)
+
+       - @callback - callback function (optional)
+
+       - @context - context object (optional)
+
+   - **Usage Examples:**
+
+        $('#container').vkTemplate(tmpl, jsonData); // JSON as URL
+        $('#container').vkTemplate(tmpl, '{"foo":"bar"}'); // JSON as a string
+        $('#container').vkTemplate(tmpl, {foo:"bar"}); // JSON as an object
+        $('#container').vkTemplate(tmpl, jsonData, function(){...}); // callback function
+        $('#container').vkTemplate(tmpl, jsonData, {id:123}); // jsonData is URL with extra parameters
+        $('#container').vkTemplate(tmpl, jsonData, {id:123}, function(){...}); // jsonData is URL, extra parameters are provided; callback function.
+
+
+    If context is passed, all five arguments must be provided.
+
+    If you don't need one or both optional arguments, set it/them to null.
+
+       - $('#foo').vkTemplate('basic.tmpl','basic.php',null,null, cntx);
+       - $('#foo').vkTemplate('basic.tmpl','basic.php',null,function(){...}, cntx);
+       - $('#foo').vkTemplate('basic.tmpl','basic.php',{foo:"bar"},null, cntx);
+
+   - **Template syntax:**
+
+       - javascript logic is wrapped with <% ... >
+       - stuff which should be printed is wrapped with <%= ... >
+
+   - **Template object prefix:**
+
+        use 'o.' prefix to refer json object
+        object: {first_name:"John",state:"California"}
+        template: Hi <%=o.first_name> Welcom to <%=o.state>! 
+
+   - **Template Examples:**
+    
+        <%=o.first_name%> <%=o.last_name%>
+
+        <%for(var ix=0;ix<o.time.length;ix++) {%>
+           time is: <%=o.time[ix].h%>:<%=o.time[ix].m%>:<%=o.time[ix].s%>
+        <%}%>
+
+        <%if (o.first_name == "Ann") {%> 
+            . . .
+        <%} else {%>
+            . . . 
+        <%}%>
+
+
+   

@@ -22,8 +22,8 @@ function loadTemplate(name)
 
 	switch(name) {
 		case 'test':
-			$('#leftpanel').vkTemplate('tmpl/basic.tmpl','php/basic.php', null, function(elm,jObj,ctx){console.log(ctx)},cntx);
-			$('#rightpanel').empty();//.load('html/callback.html');
+			$('#leftpanel').vkTemplate('embed_tmpl','php/basic.php');
+			$('#rightpanel').empty().load('html/embed.html');
 			break;
 		case 'overview':
 			$('#leftpanel').empty().load('tmpl/overview.tmpl');
@@ -63,6 +63,12 @@ function loadTemplate(name)
 			$('#leftpanel').load('tmpl/csi.tmpl');
 			$('#rightpanel').empty().load('html/csi.html');
 			break;
+			
+		case 'embed':
+			$('#leftpanel').vkTemplate('embed_tmpl','php/basic.php');
+			$('#rightpanel').empty().load('html/embed.html');
+			break;
+			
 		case 'error_handling':
 			$('#leftpanel').vkTemplate('tmpl/error_handling.tmpl','php/error_handling.php');
 			$('#rightpanel').empty().load('html/error_handling.html');

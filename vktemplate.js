@@ -1,8 +1,8 @@
 /**
 * vkTemplate - jQuery Plugin
 *  
-* Version - 0.93.00 ( ECMAScript-5 strict mode compatible)
-* Copyright (c) 2010 - 2011 Vadim Kiryukhin
+* Version - 0.94.00 ( ECMAScript-5 strict mode compatible)
+* Copyright (c) 2010 - 2012 Vadim Kiryukhin
 * vkiryukhin @ gmail.com
 * http://www.eslinstructor.net/vktemplate/
 * 
@@ -19,13 +19,20 @@
 *
 * PARAMETERS:
 *
-*	@urlTemplate  	- template URL;
+*	@urlTemplate  	- Strig; 
+*					  template URL or element's id;
+*					  
 * 	@jsonData		- can be either json object or json string or URL 
 *	
-*	@params			- jQuery Ajax "data" parameter that is sent to the 
-*                     server with jsonData URL if needed (optional)
-* 	@function		- callback function (optional)
-*	@context		- object to pass as a context (optional)
+*	@params			- Object (optional); 
+*					  jQuery Ajax "data" parameter that is sent to the 
+*                     server with jsonData URL if needed 
+*
+* 	@function		- Function  (optional);
+*					  callback function
+*					  
+*	@context		- Object  (optional);   
+*				      object to pass as a context (optional)
 *
 * USAGE:
 *	
@@ -84,7 +91,7 @@
 	
 			// jsonData can be: object | string | URL
 			if( typeof(jsonData) === 'object') {//json object
-					$(elm).empty().append(vkTemplatesCache[urlTmpl].call(context,jsonData));	
+				$(elm).empty().append(vkTemplatesCache[urlTmpl].call(context,jsonData));	
 				if(callback) {
 					callback(elm, jsonData, context);
 				}
@@ -92,7 +99,7 @@
 			
 			if($.trim(jsonData).charAt(0) == '{') { //JSON-string
 				var jsonObj = jQuery.parseJSON(jsonData);
-					$(elm).empty().append(vkTemplatesCache[urlTmpl].call(context,jsonObj));	
+				$(elm).empty().append(vkTemplatesCache[urlTmpl].call(context,jsonObj));	
 				if(callback) {
 					callback(elm, jsonObj, context);
 				}
@@ -117,20 +124,28 @@
 		}
 	
 		return this.each(function () {
-			var elm = this;
+			var elm = this,
+			localTmpl;
 			
 			if(vkTemplatesCache[urlTmpl]) { //template has been cashed;
 				_getData(jsonData, elm, params, callback, contextObj);
-			} else { //get template with ajax
-				$.ajax( { 
-					url: urlTmpl,
-					dataType: "text",
-					context: contextObj,
-					success: function(data) { 
-						vkTemplatesCache[urlTmpl] = _tmpl(data); // compile and save function in cache
-						_getData(jsonData, elm, params, callback, contextObj);
-					}
-				});
+			} else { 
+				if(localTmpl = document.getElementById(urlTmpl)) {//[sic] (it's not a comparison, it's assignment!)
+				//it's a local template, so get it as a regular innerHTML
+					vkTemplatesCache[urlTmpl] = _tmpl(localTmpl.innerHTML); // compile and save function in cache
+					_getData(jsonData, elm, params, callback, contextObj);
+				} else {
+				//it's remote template, so get it with ajax
+					$.ajax( { 
+						url: urlTmpl,
+						dataType: "text",
+						context: contextObj,
+						success: function(data) { 
+							vkTemplatesCache[urlTmpl] = _tmpl(data); // compile and save function in cache
+							_getData(jsonData, elm, params, callback, contextObj);
+						}
+					});
+				}
 			}
 		});
 	};

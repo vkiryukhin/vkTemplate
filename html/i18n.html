@@ -13,8 +13,8 @@ As a rule, it's a lot of work because we have to re-design almost everything. Bu
 </p>
 <p>
 For i18n we need additional componet: <b>dictionary</b>. I suggest you to use following structure: <br/>
-<code>  lable:[English, Russian, French] </code>. 
-<br/>As you maybe expected, it should be JSON. The first language is English, the second one is Russian and the third one is French. Language order does not matter. I also suggest you to keep dictionary file on your server and load once in <code>$(document).ready()</code> function as shown in "Function" section. 
+<code>  lable:[Language#1, Language#2, Language#3, ...] </code>. 
+<br/>As you maybe expected, it should be JSON. In my example the first language is English, the second one is Russian and the third one is French. Language order does not matter. I also suggest you to keep dictionary file on your server and load once in <code>$(document).ready()</code> function as shown in "Function" section. 
 
 
 </p>
@@ -44,7 +44,7 @@ French<code>
 </pre>
 Depend on user's choice you can request data in different languages, 
 or you can <br/>request the same data for all languages if the data is language-neural like <br/>
-numbers, dates, fragment of code, etc.
+numbers, fragment of code, etc.
 </td></tr>
 
 <tr><td class="templateDoc">
@@ -59,7 +59,7 @@ to make code cleaner and faster let's assign global vars to local ones.
   &lt;%=dic["label_last_name"][idx] %&gt;  : &lt;%=o.last_name%&gt;
   &lt;%=dic["label_state"][idx]     %&gt;  : &lt;%=o.state%&gt;
   </code> 
- ^----------------------------------^        ^--------------------^ 
+ ^--------------------------------^        ^--------------------^ 
     dictionary JSON                                data JSON
  </pre>
 </td></tr>
